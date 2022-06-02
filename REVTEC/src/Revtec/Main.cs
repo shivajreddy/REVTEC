@@ -34,8 +34,7 @@ namespace Revtec
 
             // Create push button data
 
-            var CreateBundleSheetsPushButtonData = new PushButtonData("create_bundle_sheets", "Create Bundle Sheets",
-                Assembly.GetExecutingAssembly().Location, "s")
+            var CreateBundleSheetsPushButtonData = new PushButtonData("create_bundle_sheets", "Create Bundle Sheets", Assembly.GetExecutingAssembly().Location, "Revtec.CreateBundleSheets")
             {
                 ToolTip = "Create a bundle of sheets",
                 ToolTipImage = new BitmapImage(new Uri(@"C:\Users\sreddy\Desktop\button1.ico"))
@@ -59,7 +58,7 @@ namespace Revtec
         /// <exception cref="System.NotImplementedException"></exception>
         public Result OnShutdown(UIControlledApplication application)
         {
-            throw new System.NotImplementedException();
+            return Result.Succeeded;
         }
 
 
