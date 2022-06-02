@@ -1,5 +1,4 @@
-﻿
-using Autodesk.Revit.UI;
+﻿using Autodesk.Revit.UI;
 
 namespace Revtec.ui.Revit
 {

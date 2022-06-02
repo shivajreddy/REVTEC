@@ -56,8 +56,25 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SetupInterface.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Revtec.core\Revtec.core.csproj">
+      <Project>{d35e918c-5aa9-46ad-a8b3-5a8de7c6032b}</Project>
+      <Name>Revtec.core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Revtec.res\Revtec.res.csproj">
+      <Project>{c2f3d071-add8-4b0b-bd08-3721358ea2a4}</Project>
+      <Name>Revtec.res</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Revtec.ui\Revtec.ui.csproj">
+      <Project>{0a4714fa-624e-42c0-bf97-9e87c0f11cfb}</Project>
+      <Name>Revtec.ui</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>if exist "$(AppData)\Autodesk\REVIT\Addins\2022" copy "$(ProjectDir)$(OutputPath)Revtec.dll" "$(AppData)\Autodesk\REVIT\Addins\2022"</PostBuildEvent>
+    <PostBuildEvent>if exist "$(AppData)\Autodesk\REVIT\Addins\2022" copy "$(ProjectDir)$(OutputPath)Revtec.dll" "$(AppData)\Autodesk\REVIT\Addins\2022"
+if exist "$(AppData)\Autodesk\REVIT\Addins\2022" copy "$(ProjectDir)$(OutputPath)Revtec.core.dll" "$(AppData)\Autodesk\REVIT\Addins\2022"
+if exist "$(AppData)\Autodesk\REVIT\Addins\2022" copy "$(ProjectDir)$(OutputPath)Revtec.res.dll" "$(AppData)\Autodesk\REVIT\Addins\2022"
+if exist "$(AppData)\Autodesk\REVIT\Addins\2022" copy "$(ProjectDir)$(OutputPath)Revtec.ui.dll" "$(AppData)\Autodesk\REVIT\Addins\2022"</PostBuildEvent>
   </PropertyGroup>
 </Project>

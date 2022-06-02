@@ -25,25 +25,27 @@ namespace Revtec
         public Result OnStartup(UIControlledApplication application)
         {
 
-            const string tabname = "REVTEC-1.1.0";
-            application.CreateRibbonTab(tabname);
+            var ui = new SetupInterface();
+            ui.Initialize(application);
+            //const string tabname = "REVTEC-1.1.0";
+            //application.CreateRibbonTab(tabname);
 
-            const string panelName = "Create Stuff";
-            var createPanel = application.CreateRibbonPanel(tabname, panelName);
+            //const string panelName = "Create Stuff";
+            //var createPanel = application.CreateRibbonPanel(tabname, panelName);
 
 
-            // Create push button data
+            //// Create push button data
 
-            var CreateBundleSheetsPushButtonData = new PushButtonData("create_bundle_sheets", "Create Bundle Sheets", Assembly.GetExecutingAssembly().Location, "Revtec.core.Commands.CreateStuff.CreateBundleSheets")
-            {
-                ToolTip = "Create a bundle of sheets",
-                ToolTipImage = new BitmapImage(new Uri(@"C:\Users\sreddy\Desktop\button1.ico"))
+            //var CreateBundleSheetsPushButtonData = new PushButtonData("create_bundle_sheets", "Create Bundle Sheets", Assembly.GetExecutingAssembly().Location, "Revtec.core.Commands.CreateStuff.CreateBundleSheets")
+            //{
+            //    ToolTip = "Create a bundle of sheets",
+            //    ToolTipImage = new BitmapImage(new Uri(@"C:\Users\sreddy\Desktop\button1.ico"))
                 
-            };
+            //};
 
-            var createBundleSheetsPushButton = createPanel.AddItem(CreateBundleSheetsPushButtonData) as PushButton;
+            //var createBundleSheetsPushButton = createPanel.AddItem(CreateBundleSheetsPushButtonData) as PushButton;
 
-            createBundleSheetsPushButton.LargeImage = new BitmapImage(new Uri(@"C:\Users\sreddy\Desktop\button1.ico"));
+            //createBundleSheetsPushButton.LargeImage = new BitmapImage(new Uri(@"C:\Users\sreddy\Desktop\button1.ico"));
 
 
 

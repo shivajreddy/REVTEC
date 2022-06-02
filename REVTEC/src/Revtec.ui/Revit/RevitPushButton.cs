@@ -28,9 +28,8 @@ namespace Revtec.ui.Revit
             var btnData = new PushButtonData(btnDataName, data.Label,
                 Revtec.core.CoreAssembly.GetCoreAssemblyLocation(), data.CommandNamespacePath)
             {
-                ToolTip = "somewehre inside class test",
-                LargeImage = Revtec.res.ResourceImage.GetIcon("button1.ico"),
-                ToolTipImage = Revtec.res.ResourceImage.GetIcon("button1.ico")
+                LargeImage = Revtec.res.ResourceImage.GetIcon(data.IconImageName),
+                ToolTipImage = Revtec.res.ResourceImage.GetIcon(data.IconImageName)
             };
 
             return data.Panel.AddItem(btnData) as PushButton;
