@@ -35,7 +35,7 @@ namespace Revtec
             app.CreateRibbonTab(tabName);
 
             ////////////////////    "Create Stuff" Panel    //////////////////// 
-            const string panel1PanelName = "Create.Stuff";
+            const string panel1PanelName = "+ Create +";
             var createStuffPanel = app.CreateRibbonPanel(tabName, panel1PanelName);
 
             //////////      Add buttons to Panel    //////////
@@ -54,7 +54,7 @@ namespace Revtec
 
 
             ////////////////////    "Edit Stuff" Panel    //////////////////// 
-            const string panel2PanelName = "Edit Stuff";
+            const string panel2PanelName = " % Edit %";
             var panel2Panel = app.CreateRibbonPanel(tabName, panel2PanelName);
 
             //////////      Add buttons to Panel    //////////
