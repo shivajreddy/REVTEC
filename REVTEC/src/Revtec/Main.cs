@@ -34,7 +34,7 @@ namespace Revtec
 
             // Create push button data
 
-            var CreateBundleSheetsPushButtonData = new PushButtonData("create_bundle_sheets", "Create Bundle Sheets", Assembly.GetExecutingAssembly().Location, "Revtec.CreateBundleSheets")
+            var CreateBundleSheetsPushButtonData = new PushButtonData("create_bundle_sheets", "Create Bundle Sheets", Assembly.GetExecutingAssembly().Location, "Revtec.core.Commands.CreateStuff.CreateBundleSheets")
             {
                 ToolTip = "Create a bundle of sheets",
                 ToolTipImage = new BitmapImage(new Uri(@"C:\Users\sreddy\Desktop\button1.ico"))
