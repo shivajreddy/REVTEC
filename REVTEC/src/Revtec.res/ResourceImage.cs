@@ -1,4 +1,7 @@
-﻿using System.Windows.Media.Imaging;
+﻿using System;
+using System.IO;
+using System.Reflection;
+using System.Windows.Media.Imaging;
 
 namespace Revtec.res
 {
@@ -15,12 +18,20 @@ namespace Revtec.res
             // Create the resource reader stream
             var stream = ResourceAssembly.GetAssembly().GetManifestResourceStream(ResourceAssembly.GetNamespace() + "Images.Icons" + name);
 
-            var image = new BitmapImage();
 
-            ///// some problem with the below block //////
+            /// some problem with the below block //////
             //image.BeginInit();
             //image.StreamSource = stream;
             //image.EndInit();
+
+            // Read the file as one string. 
+            string parentPath = Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.Parent.FullName;
+
+            string imagePath = Path.Combine(parentPath,"src","Revtec.res", "Images", "Icons", name);
+
+            Uri uri = new Uri(imagePath);
+
+            var image = new BitmapImage(uri);
 
             return image;
         }

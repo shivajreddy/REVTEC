@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\CreateStuff\CreateBundleSheets.cs" />
+    <Compile Include="Commands\EditStuff\EditButton.cs" />
     <Compile Include="CoreAssembly.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
