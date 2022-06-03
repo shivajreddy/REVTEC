@@ -1,4 +1,5 @@
-﻿using Autodesk.Revit.DB;
+﻿using Autodesk.Revit.ApplicationServices;
+using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 
 namespace Revtec.core.Commands.TestingLab
@@ -10,11 +11,23 @@ namespace Revtec.core.Commands.TestingLab
     {
         public bool IsCommandAvailable(UIApplication applicationData, CategorySet selectedCategories)
         {
-
             Document doc = applicationData.ActiveUIDocument.Document;
 
-            if (doc.IsFamilyDocument)
+            Categories allWalls = applicationData.ActiveUIDocument.Document.Settings.Categories;
+
+            Category wallCat = allWalls.get_Item(BuiltInCategory.OST_Walls);
+            if (selectedCategories.Contains(wallCat))
+            {
                 return true;
+            }
+
+            // Family
+            if (doc.IsFamilyDocument)
+            {
+                return false;
+            }
+
+            // Project
             return false;
         }
     }

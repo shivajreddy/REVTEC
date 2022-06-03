@@ -104,6 +104,7 @@ namespace Revtec
                 CommandNamespacePath = Revtec.core.Commands.TestingLab.Test1.GetPath()
             };
             // Add button to panel
+
             RevitPushButton.Create(test1ButtonDataModel);
             //var test1Button = RevitPushButton.Create(test1ButtonDataModel) as RibbonItem;
             //test1Button.Visible = false;

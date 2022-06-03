@@ -21,8 +21,6 @@ namespace Revtec.ui.Revit
 
         public string TooltipImageName { get; set; }
 
-        public bool ProjectOnlyEnabledButton { get; set; }
-        
 
         #endregion
 
