@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Reflection;
-using System.Text;
-using Autodesk.Revit.ApplicationServices;
+﻿using Autodesk.Revit.ApplicationServices;
 using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace Revtec.core.Commands.CreateStuff
 {
@@ -32,8 +31,8 @@ namespace Revtec.core.Commands.CreateStuff
 
         public List<Element> GetTitleBlocks(Document doc)
         {
-            FilteredElementCollector titleBlocksElementCollector =  new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_TitleBlocks);
-            ICollection<Element> allTitleBlocks =  titleBlocksElementCollector.ToElements();
+            FilteredElementCollector titleBlocksElementCollector = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_TitleBlocks);
+            ICollection<Element> allTitleBlocks = titleBlocksElementCollector.ToElements();
 
             List<Element> AllTitleBlocks = new List<Element>();
 
@@ -56,7 +55,7 @@ namespace Revtec.core.Commands.CreateStuff
             Document doc = uiDoc.Document;
 
 
-
+            Console.WriteLine("Hello world!!!!");
 
             var result = GetWalls(doc);
             var sb = SB(result);
@@ -65,6 +64,19 @@ namespace Revtec.core.Commands.CreateStuff
             //var result = GetTitleBlocks(doc);
             //var sb2 = new StringBuilder();
             //foreach ( Element item in result)
+            //{
+            //    sb2.Append(item.Name + " " + "\n");
+            //}
+
+            //TaskDialog.Show("result", sb2.ToString());
+            //var result = GetWalls(doc);
+            //var sb = SB(result);
+            //TaskDialog.Show("hi", sb.ToString());
+
+            //var result = GetTitleBlocks(doc);
+
+            //var sb2 = new StringBuilder();
+            //foreach (Element item in result)
             //{
             //    sb2.Append(item.Name + " " + "\n");
             //}
