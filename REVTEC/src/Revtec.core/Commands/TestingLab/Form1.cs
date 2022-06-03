@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using Form = System.Windows.Forms.Form;
@@ -15,6 +16,14 @@ namespace Revtec.core.Commands.TestingLab
 {
     public partial class Form1 : Form
     {
+
+        #region Private members
+
+        public Document Doc;
+        private UIDocument uiDoc = null;
+
+        #endregion
+
         #region props
 
         public string val1 { get; set; }
@@ -23,18 +32,42 @@ namespace Revtec.core.Commands.TestingLab
 
         #region Constructor
 
-        public Document Doc;
         public Form1(Document doc)
         {
             InitializeComponent();
             Doc = doc;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+
+            // 
+
+            IList<Element> titleBlockTypes = new FilteredElementCollector(Doc).OfCategory(BuiltInCategory.OST_TitleBlocks)
+                .WhereElementIsElementType().ToElements();
+
+            // Set the drop down menu 
+            IList<string> projectTitleBlocks = new List<string>();
+
+            foreach (Element titleBlock in titleBlockTypes)
+            {
+                projectTitleBlocks.Add(titleBlock.Name);
+            }
+
+            this.usrTitleBlock.DataSource = projectTitleBlocks;
+
+            //this.usrTitleBlock.DataSource = por
+
         }
 
         #endregion
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //TaskDialog.Show("haslkdf", "button is clicked");
+            //this.DialogResult = DialogResult.Cancel;
+            //Close();
+
+            //TaskDialog.Show("Ok Task", "button is clicked");
             
             // usrNumber
             val1 = usrNumber.Text;
@@ -42,7 +75,7 @@ namespace Revtec.core.Commands.TestingLab
             IList<Element> titleBlockTypes = new FilteredElementCollector(Doc).OfCategory(BuiltInCategory.OST_TitleBlocks)
                 .WhereElementIsElementType().ToElements();
 
-            // Set the drop down menu
+            // Set the drop down menu 
             IList<string> projectTitleBlocks = new List<string>();
 
             foreach (Element titleBlock in titleBlockTypes)
@@ -69,5 +102,9 @@ namespace Revtec.core.Commands.TestingLab
 
         private  void label2_Click(object sender, EventArgs e){}
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

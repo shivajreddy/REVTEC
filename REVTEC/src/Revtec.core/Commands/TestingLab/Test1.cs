@@ -41,17 +41,21 @@ namespace Revtec.core.Commands.TestingLab
             //    {
             //        info += "\n\t" + id;
             //    }
-            //    TaskDialog.Show("Revit",info);
+            //    TaskDialog.Show("Revit", info);
             //}
 
             using (System.Windows.Forms.Form form = new Form1(doc))
             {
-                if (form.ShowDialog() == DialogResult.OK)
-                {
-                    TaskDialog.Show("asdhf", form.Location.ToString());
-                    return Result.Succeeded;
-                }
+                form.ShowDialog();
             }
+            //{
+            //    if (form.ShowDialog() == DialogResult.OK)
+            //    {
+            //        TaskDialog.Show("asdhf", form.Location.ToString());
+            //        return Result.Succeeded;
+            //    }
+            //}
+            
 
             //var f1 = new Form1();
             //f1.Show();
