@@ -58,19 +58,18 @@ namespace Revtec.core.Commands.CreateStuff
 
 
 
-            //var result = GetWalls(doc);
-            //var sb = SB(result);
-            //TaskDialog.Show("hi", sb.ToString());
+            var result = GetWalls(doc);
+            var sb = SB(result);
+            TaskDialog.Show("hi", sb.ToString());
 
-            var result = GetTitleBlocks(doc);
+            //var result = GetTitleBlocks(doc);
+            //var sb2 = new StringBuilder();
+            //foreach ( Element item in result)
+            //{
+            //    sb2.Append(item.Name + " " + "\n");
+            //}
 
-            var sb2 = new StringBuilder();
-            foreach ( Element item in result)
-            {
-                sb2.Append(item.Name + " " + "\n");
-            }
-
-            TaskDialog.Show("result", sb2.ToString());
+            //TaskDialog.Show("result", sb2.ToString());
 
             return Result.Succeeded;
         }
