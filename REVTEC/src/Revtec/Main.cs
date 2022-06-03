@@ -28,8 +28,11 @@ namespace Revtec
             var ui = new SetupInterface();
             ui.Initialize(application);
 
+
             return Result.Succeeded;
         }
+
+
 
         /// <summary>
         /// Called when revit shutsdown
@@ -42,8 +45,6 @@ namespace Revtec
             return Result.Succeeded;
         }
 
-
         #endregion
-
     }
 }

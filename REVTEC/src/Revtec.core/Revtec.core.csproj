@@ -51,6 +51,8 @@
   <ItemGroup>
     <Compile Include="Commands\CreateStuff\CreateBundleSheets.cs" />
     <Compile Include="Commands\EditStuff\EditButton.cs" />
+    <Compile Include="Commands\TestingLab\CustomAvailablity.cs" />
+    <Compile Include="Commands\TestingLab\Test1.cs" />
     <Compile Include="CoreAssembly.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

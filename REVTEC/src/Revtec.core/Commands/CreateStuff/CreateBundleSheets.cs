@@ -8,11 +8,12 @@ using System.Text;
 
 namespace Revtec.core.Commands.CreateStuff
 {
+    /// <summary>
+    /// All the code for the command button, should go here.
+    /// </summary>
     [Transaction(TransactionMode.Manual)]
     public class CreateBundleSheets : IExternalCommand
     {
-
-
 
         public List<Wall> GetWalls(Document doc)
         {

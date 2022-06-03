@@ -25,13 +25,15 @@ namespace Revtec.ui.Revit
             var btnDataName = Guid.NewGuid().ToString();
 
             // Sets the button data
-            var btnData = new PushButtonData(btnDataName, data.Label,
-                Revtec.core.CoreAssembly.GetCoreAssemblyLocation(), data.CommandNamespacePath)
+            var btnData = new PushButtonData(btnDataName, data.Label, Revtec.core.CoreAssembly.GetCoreAssemblyLocation(), data.CommandNamespacePath)
             {
                 
                 LargeImage = Revtec.res.ResourceImage.GetIcon(data.IconImageName),
                 ToolTipImage = Revtec.res.ResourceImage.GetIcon(data.IconImageName)
             };
+
+            // Set the availability class here
+            //btnData.AvailabilityClassName = "Revtec.ui.Revit.CustomAvailability";
 
             return data.Panel.AddItem(btnData) as PushButton;
         }
