@@ -50,7 +50,7 @@ namespace Revtec
             const string tabName = "REVTEC-1.1.0";
             app.CreateRibbonTab(tabName);
 
-            ////////////////////    "Create Stuff" Panel    //////////////////// 
+            ////////////////////////////////////////    "Create Stuff" Panel    //////////////////////////////////////// 
             const string panel1PanelName = "+ Create +";
             var createStuffPanel = app.CreateRibbonPanel(tabName, panel1PanelName);
 
@@ -68,8 +68,7 @@ namespace Revtec
             // Add button to panel
             RevitPushButton.Create(buttonDataModel);
 
-
-            ////////////////////    "Edit Stuff" Panel    //////////////////// 
+            ////////////////////////////////////////    "Edit Stuff" Panel    //////////////////////////////////////// 
             const string panel2PanelName = " % Edit %";
             var panel2Panel = app.CreateRibbonPanel(tabName, panel2PanelName);
 
@@ -87,8 +86,25 @@ namespace Revtec
             // Add button to panel
             RevitPushButton.Create(editButtonDataModel);
 
+            ////////////////////////////////////////    "Annotation" Panel    //////////////////////////////////////// 
+            const string annotationPanelName = " Annotations ";
+            var annotationPanel = app.CreateRibbonPanel(tabName, annotationPanelName);
 
-            ////////////////////    "Test" Panel    //////////////////// 
+            //////////      Add buttons to Panel    //////////
+            // Generate button data
+            var annotationButtonDataModel1 = new RevitPushButtonDataModel()
+            {
+                Label = "Annotation1",
+                Panel = annotationPanel,
+                Tooltip = "tool tip for this",
+                IconImageName = "button1.ico",
+                TooltipImageName = "button1.ico",
+                CommandNamespacePath = Revtec.core.Commands.Annotations.TagWallLayer.GetPath()
+            };
+            // Add button to panel
+            RevitPushButton.Create(annotationButtonDataModel1);
+
+            ////////////////////////////////////////    "Test" Panel    //////////////////////////////////////// 
             const string testPanelName = " && Testing &&";
             var testPanel = app.CreateRibbonPanel(tabName, testPanelName);
 

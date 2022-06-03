@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
+using System.Windows.Forms;
 using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
@@ -24,26 +26,50 @@ namespace Revtec.core.Commands.TestingLab
             var uiDoc = commandData.Application.ActiveUIDocument;
             var doc = uiDoc.Document;
 
+            FilteredElementCollector collector = new FilteredElementCollector(doc);
+            //ICollection<Element> Walls = collector.OfClass(typeof(Wall)).ToElements();
 
-            // Check if we are in revit project, not revit family
-            if (doc.IsFamilyDocument)
+            //var selection = uiDoc.Selection;
+            //ICollection<ElementId> selectedIds = uiDoc.Selection.GetElementIds();
+
+            //if (0 == selectedIds.Count)
+            //    TaskDialog.Show("Revit", "No items selected");
+            //else
+            //{
+            //    String info = "Ids of selected elements in the document are: ";
+            //    foreach (ElementId id in selectedIds)
+            //    {
+            //        info += "\n\t" + id;
+            //    }
+            //    TaskDialog.Show("Revit",info);
+            //}
+
+            using (System.Windows.Forms.Form form = new Form1(doc))
             {
-
-                TaskDialog.Show("cant use in family", "no family only project");
-
-                return Result.Failed;
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    TaskDialog.Show("asdhf", form.Location.ToString());
+                    return Result.Succeeded;
+                }
             }
 
+            //var f1 = new Form1();
+            //f1.Show();
+
+            //TaskDialog.Show("User choice", f1.val1);
 
 
 
-            var win = new TaskDialog("info")
-            {
-                MainContent = "Hi this is testing",
-                MainIcon = TaskDialogIcon.TaskDialogIconShield,
-                CommonButtons = TaskDialogCommonButtons.Ok
-            };
-            win.Show();
+
+
+
+            //var win = new TaskDialog("info")
+            //{
+            //    MainContent = "Hi this is testing",
+            //    MainIcon = TaskDialogIcon.TaskDialogIconShield,
+            //    CommonButtons = TaskDialogCommonButtons.Ok
+            //};
+            //win.Show();
 
             return Result.Succeeded;
         }
