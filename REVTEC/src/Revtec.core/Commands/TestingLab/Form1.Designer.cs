@@ -31,17 +31,18 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.btnOk = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.usrTitleBlock = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.usrNumber = new System.Windows.Forms.TextBox();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -76,6 +77,57 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Bundle Options";
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(24, 320);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(505, 36);
+            this.checkBox1.TabIndex = 7;
+            this.checkBox1.Text = "Link Sheet Params to Global Params";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(122, 198);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(182, 32);
+            this.label5.TabIndex = 11;
+            this.label5.Text = "Prefix Details";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(192, 235);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(171, 32);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "Sheet Name";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(24, 235);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(196, 32);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Sheet Number";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(197, 264);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(153, 39);
+            this.textBox2.TabIndex = 8;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(24, 264);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(153, 39);
+            this.textBox1.TabIndex = 7;
             // 
             // label2
             // 
@@ -124,57 +176,6 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.button2_Click);
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(24, 264);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(153, 39);
-            this.textBox1.TabIndex = 7;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(197, 264);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(153, 39);
-            this.textBox2.TabIndex = 8;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(24, 235);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(196, 32);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "Sheet Number";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(192, 235);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(171, 32);
-            this.label4.TabIndex = 10;
-            this.label4.Text = "Sheet Name";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(122, 198);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(182, 32);
-            this.label5.TabIndex = 11;
-            this.label5.Text = "Prefix Details";
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(24, 320);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(505, 36);
-            this.checkBox1.TabIndex = 7;
-            this.checkBox1.Text = "Link Sheet Params to Global Params";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
             // Form1
             // 
             this.AcceptButton = this.btnOk;
@@ -212,5 +213,6 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }

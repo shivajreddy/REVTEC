@@ -25,7 +25,7 @@ namespace Revtec
     /// </summary>
     public class SetupInterface
     {
-        #region SetupInterface
+        #region SetupInterface Constructor
 
         /// <summary>
         /// Default constructor
@@ -67,6 +67,19 @@ namespace Revtec
             };
             // Add button to panel
             RevitPushButton.Create(buttonDataModel);
+
+            // Generate button data
+            var createBundleSheetsDataModel = new RevitPushButtonDataModel
+            {
+                Label = "Create Sheet Bundle",
+                Panel = createStuffPanel,
+                Tooltip = "Create multiple sheets with custom sheet number and names",
+                IconImageName = "bundle_sheets.ico",
+                TooltipImageName = "bundle_sheets.ico",
+                CommandNamespacePath = Revtec.core.Commands.CreateStuff.CBSShiva.GetPath()
+            };
+            // Add button panel
+            RevitPushButton.Create(createBundleSheetsDataModel);
 
             ////////////////////////////////////////    "Edit Stuff" Panel    //////////////////////////////////////// 
             const string panel2PanelName = " % Edit %";

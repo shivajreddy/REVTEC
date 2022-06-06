@@ -62,7 +62,7 @@ namespace Revtec.core.Commands.CreateStuff
             var sb = SB(result);
             TaskDialog.Show("hi", sb.ToString());
 
-            //var result = GetTitleBlocks(doc);
+            //var result = CreateSheet(doc);
             //var sb2 = new StringBuilder();
             //foreach ( Element item in result)
             //{
@@ -74,7 +74,7 @@ namespace Revtec.core.Commands.CreateStuff
             //var sb = SB(result);
             //TaskDialog.Show("hi", sb.ToString());
 
-            //var result = GetTitleBlocks(doc);
+            //var result = CreateSheet(doc);
 
             //var sb2 = new StringBuilder();
             //foreach (Element item in result)

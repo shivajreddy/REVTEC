@@ -57,7 +57,14 @@
   <ItemGroup>
     <Compile Include="Commands\Annotations\Helpers\Message.cs" />
     <Compile Include="Commands\Annotations\TagWallLayer.cs" />
+    <Compile Include="Commands\CreateStuff\CBSShiva.cs" />
     <Compile Include="Commands\CreateStuff\CreateBundleSheets.cs" />
+    <Compile Include="Commands\CreateStuff\NewBundleSheet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\CreateStuff\NewBundleSheet.Designer.cs">
+      <DependentUpon>NewBundleSheet.cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\EditStuff\EditButton.cs" />
     <Compile Include="Commands\Selection\SelectionFilterByCategory.cs" />
     <Compile Include="Commands\TestingLab\CustomAvailablity.cs" />
@@ -73,6 +80,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Commands\CreateStuff\NewBundleSheet.resx">
+      <DependentUpon>NewBundleSheet.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Commands\TestingLab\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

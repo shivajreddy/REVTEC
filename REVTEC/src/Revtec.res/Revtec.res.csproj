@@ -46,9 +46,11 @@
     <Compile Include="ResourceAssembly.cs" />
     <Compile Include="ResourceImage.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Images\Icons\button1.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Icons\bundle_sheets.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
