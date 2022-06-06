@@ -44,33 +44,20 @@ namespace Revtec.core.Commands.CreateStuff
         // Methods
         public ViewSheet CreateSheet(Element titleBlock, string sheetNumber, string sheetName)
         {
-            //// Get the actual title block
-            //IList<Element> titleBlocks = new FilteredElementCollector(Doc).OfCategory(BuiltInCategory.OST_TitleBlocks)
-            //    .WhereElementIsElementType().ToElements();
-
-            //Element chosenTitleBlock = null;
-            //foreach (var titleBlock in titleBlocks)
-            //{
-            //    if (titleBlock.Name.ToString() == TitleBlockName)
-            //    {
-            //        chosenTitleBlock= titleBlock;
-            //    }
-            //}
-
-
             // Create sheet list to be used
-            ViewSchedule testSheetList = ViewSchedule.CreateSheetList(Doc);
-
-            ViewSheet newSheet = ViewSheet.Create(Doc, titleBlock.Id);
-            newSheet.SheetNumber = sheetNumber;
-            newSheet.Name = sheetName;
-            return newSheet;
-            //newSheet.SheetNumber = PrefixSheetNumberPart1 + PrefixSheetNumberPart2;
-            //newSheet.Name = PrefixSheetName;
-
-
-            //AssemblyViewUtils.CreateSheet(Doc, chosenTitleBlock.Id, chosenTitleBlock.Id);
-            //return chosenTitleBlock.Id.ToString();
+            try
+            {
+                ViewSchedule testSheetList = ViewSchedule.CreateSheetList(Doc);
+                ViewSheet newSheet = ViewSheet.Create(Doc, titleBlock.Id);
+                newSheet.SheetNumber = sheetNumber;
+                newSheet.Name = sheetName;
+                return newSheet;
+            }
+            catch (Exception e)
+            {
+                TaskDialog.Show("Cant create sheet bundle", $"{sheetNumber} already exists");
+                throw;
+            }
         }
 
         public void CreateSheetBundle()
@@ -102,7 +89,7 @@ namespace Revtec.core.Commands.CreateStuff
                 for (int idx = 0; idx < NumberOfSheets; idx++)
                 {
                     var newSheetNumber = sheetNumbers[idx];
-                    var newSheetName = PrefixSheetName + newSheetNumber;
+                    var newSheetName = PrefixSheetName;
                     ViewSheet newSheet = CreateSheet( chosenTitleBlock, newSheetNumber, newSheetName);
                 }
 

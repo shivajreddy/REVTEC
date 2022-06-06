@@ -66,7 +66,7 @@
             this.btnOk.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(147, 52);
-            this.btnOk.TabIndex = 0;
+            this.btnOk.TabIndex = 6;
             this.btnOk.Text = "Ok";
             this.btnOk.UseVisualStyleBackColor = false;
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
@@ -80,7 +80,7 @@
             this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(153, 52);
-            this.btnCancel.TabIndex = 1;
+            this.btnCancel.TabIndex = 7;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -112,7 +112,7 @@
             0});
             this.userNumber.Name = "userNumber";
             this.userNumber.Size = new System.Drawing.Size(70, 43);
-            this.userNumber.TabIndex = 4;
+            this.userNumber.TabIndex = 0;
             this.userNumber.Value = new decimal(new int[] {
             1,
             0,
@@ -147,7 +147,7 @@
             this.userSheetNumberPart1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.userSheetNumberPart1.Name = "userSheetNumberPart1";
             this.userSheetNumberPart1.Size = new System.Drawing.Size(55, 43);
-            this.userSheetNumberPart1.TabIndex = 8;
+            this.userSheetNumberPart1.TabIndex = 2;
             // 
             // label5
             // 
@@ -166,7 +166,7 @@
             this.userSheetName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.userSheetName.Name = "userSheetName";
             this.userSheetName.Size = new System.Drawing.Size(151, 43);
-            this.userSheetName.TabIndex = 10;
+            this.userSheetName.TabIndex = 4;
             // 
             // groupBox1
             // 
@@ -182,18 +182,20 @@
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox1.Size = new System.Drawing.Size(415, 206);
-            this.groupBox1.TabIndex = 11;
+            this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Prefix Options:";
             // 
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
+            this.checkBox1.Checked = true;
+            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox1.Location = new System.Drawing.Point(50, 523);
             this.checkBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(548, 40);
-            this.checkBox1.TabIndex = 12;
+            this.checkBox1.TabIndex = 5;
             this.checkBox1.Text = "Link \"Sheet Params\" to \"Global Params\"";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
@@ -214,7 +216,7 @@
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox2.Size = new System.Drawing.Size(954, 712);
-            this.groupBox2.TabIndex = 13;
+            this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Bundle Options:";
             // 
@@ -226,7 +228,7 @@
             this.dropDown.Location = new System.Drawing.Point(52, 213);
             this.dropDown.Name = "dropDown";
             this.dropDown.Size = new System.Drawing.Size(501, 35);
-            this.dropDown.TabIndex = 13;
+            this.dropDown.TabIndex = 1;
             // 
             // userSheetNumberPart2
             // 
@@ -234,7 +236,7 @@
             this.userSheetNumberPart2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.userSheetNumberPart2.Name = "userSheetNumberPart2";
             this.userSheetNumberPart2.Size = new System.Drawing.Size(88, 43);
-            this.userSheetNumberPart2.TabIndex = 13;
+            this.userSheetNumberPart2.TabIndex = 3;
             // 
             // groupBox3
             // 
@@ -264,6 +266,7 @@
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(88, 43);
             this.textBox1.TabIndex = 13;
+            this.textBox1.TabStop = false;
             this.textBox1.Text = "005";
             // 
             // textBox2
@@ -276,6 +279,7 @@
             this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(179, 25);
             this.textBox2.TabIndex = 10;
+            this.textBox2.TabStop = false;
             this.textBox2.Text = "FIRST FLOOR PLAN";
             // 
             // label3
@@ -299,6 +303,7 @@
             this.textBox3.ReadOnly = true;
             this.textBox3.Size = new System.Drawing.Size(55, 43);
             this.textBox3.TabIndex = 8;
+            this.textBox3.TabStop = false;
             this.textBox3.Text = "X";
             // 
             // label6
@@ -371,6 +376,8 @@
             this.ForeColor = System.Drawing.Color.Black;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "NewBundleSheet";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
