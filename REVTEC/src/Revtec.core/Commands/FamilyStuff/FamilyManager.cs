@@ -14,7 +14,19 @@ namespace Revtec.core.Commands.FamilyStuff
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            TaskDialog.Show("test title", "working for family manager button");
+            // App and Doc
+            var uiDoc = commandData.Application.ActiveUIDocument;
+            var doc = uiDoc.Document;
+
+
+            // Display the form
+            using (System.Windows.Forms.Form winForm = new FamilyManagerForm(doc))
+            {
+                winForm.ShowDialog();
+            }
+
+
+
             return Result.Succeeded;
         }
 
