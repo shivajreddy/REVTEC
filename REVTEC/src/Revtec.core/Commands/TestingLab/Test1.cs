@@ -8,15 +8,6 @@ namespace Revtec.core.Commands.TestingLab
     [Transaction(TransactionMode.Manual)]
     public class Test1 : IExternalCommand
     {
-
-        /// <summary>
-        /// The code for command button goes in this execute method.
-        /// </summary>
-        /// <param name="commandData"></param>
-        /// <param name="message"></param>
-        /// <param name="elements"></param>
-        /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
             // Command context
@@ -44,15 +35,13 @@ namespace Revtec.core.Commands.TestingLab
             }
 
 
-            //var loadedString = loadedFamily.Name;
-
-            //TaskDialog.Show("title", loadedString);
-
 
 
 
             return Result.Succeeded;
         }
+
+
 
         public class MyFamilyLoadOptions : IFamilyLoadOptions
         {
@@ -77,8 +66,6 @@ namespace Revtec.core.Commands.TestingLab
                 throw new NotImplementedException();
             }
         }
-
-
 
         # region GetPath Method
 

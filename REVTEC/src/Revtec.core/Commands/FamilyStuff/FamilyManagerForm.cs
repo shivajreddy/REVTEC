@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using Form = System.Windows.Forms.Form;
@@ -26,6 +20,27 @@ namespace Revtec.core.Commands.FamilyStuff
         {
             InitializeComponent();
             Doc = doc;
+
+            // Show the existing families
+            FilteredElementCollector collector = new FilteredElementCollector(doc);
+
+            collector.OfClass(typeof(Family));
+
+            IList<Element> FamilySymbols = collector.ToElements();
+
+            List<string> names = new List<string>();
+            names.Add(FamilySymbols.Count.ToString());
+            foreach (var familySymbol in FamilySymbols)
+            {
+                names.Add(familySymbol.Name.ToString());
+            }
+            this.listBox1.DataSource = names;
+
+
+
+            //this.listBox1.DataSource = 
+
+
         }
 
         private void btnOk_Click(object sender, EventArgs e)
