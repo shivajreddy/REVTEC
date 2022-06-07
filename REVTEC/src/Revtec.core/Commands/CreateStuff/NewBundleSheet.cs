@@ -138,8 +138,6 @@ namespace Revtec.core.Commands.CreateStuff
         }
 
 
-
-
         // OK button method
         private void btnOk_Click(object sender, EventArgs e)
         {

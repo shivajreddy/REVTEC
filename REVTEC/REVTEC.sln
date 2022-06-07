@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Revtec", "src\Revtec\Revtec
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8C611D5B-2309-4AE3-BE0A-DB0DAC9E6896}"
 	ProjectSection(SolutionItems) = preProject
-		Revtec.addin = Revtec.addin
+		addin\Revtec.addin = addin\Revtec.addin
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Revtec.core", "src\Revtec.core\Revtec.core.csproj", "{D35E918C-5AA9-46AD-A8B3-5A8DE7C6032B}"

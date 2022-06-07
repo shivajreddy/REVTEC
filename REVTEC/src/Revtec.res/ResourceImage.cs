@@ -15,25 +15,34 @@ namespace Revtec.res
 
         public static BitmapImage GetIcon(string name)
         {
-            // Create the resource reader stream
-            var stream = ResourceAssembly.GetAssembly().GetManifestResourceStream(ResourceAssembly.GetNamespace() + "Images.Icons" + name);
+            // yt video method
+            var resImg = ResourceAssembly.GetNamespace() + "Images.Icons." + name;
+            var stream = ResourceAssembly.GetAssembly().GetManifestResourceStream(resImg);
+
+            var img = new BitmapImage();
+
+            img.BeginInit();
+            img.StreamSource = stream;
+            img.EndInit();
+
+            return img;
 
 
-            /// some problem with the below block //////
-            //image.BeginInit();
-            //image.StreamSource = stream;
-            //image.EndInit();
+            // My method - Read the file as one string. 
+            //string parentPath = null;
+            //parentPath = Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.Parent.FullName;
 
-            // Read the file as one string. 
-            string parentPath = Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.Parent.FullName;
+            //// This parent path is throws null, in production. cause production directory not same
+            //Console.WriteLine(parentPath);
 
-            string imagePath = Path.Combine(parentPath,"src","Revtec.res", "Images", "Icons", name);
 
-            Uri uri = new Uri(imagePath);
+            //string imagePath = Path.Combine(parentPath,"src","Revtec.res", "Images", "Icons", name);
 
-            var image = new BitmapImage(uri);
+            //Uri uri = new Uri(imagePath);
 
-            return image;
+            //var image = new BitmapImage(uri);
+
+            //return image;
         }
 
         #endregion

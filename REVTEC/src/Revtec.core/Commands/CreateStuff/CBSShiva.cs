@@ -11,7 +11,6 @@ namespace Revtec.core.Commands.CreateStuff
         // Button Command code 
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-
             // App and Doc
             var uiDoc = commandData.Application.ActiveUIDocument;
             var doc = uiDoc.Document;
