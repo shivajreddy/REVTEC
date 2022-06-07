@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
-using System.Windows.Forms;
 using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
@@ -26,68 +23,71 @@ namespace Revtec.core.Commands.TestingLab
             var uiDoc = commandData.Application.ActiveUIDocument;
             var doc = uiDoc.Document;
 
-            FilteredElementCollector collector = new FilteredElementCollector(doc);
-            //ICollection<Element> Walls = collector.OfClass(typeof(Wall)).ToElements();
+            //////////      Testing for Family Manager      //////////
+            var path = @"C:\Users\sreddy\Desktop\TestingFiles\TestFam1.rfa";
 
-            //var selection = uiDoc.Selection;
-            //ICollection<ElementId> selectedIds = uiDoc.Selection.GetElementIds();
-
-            //if (0 == selectedIds.Count)
-            //    TaskDialog.Show("Revit", "No items selected");
-            //else
-            //{
-            //    String info = "Ids of selected elements in the document are: ";
-            //    foreach (ElementId id in selectedIds)
-            //    {
-            //        info += "\n\t" + id;
-            //    }
-            //    TaskDialog.Show("Revit", info);
-            //}
-
-            using (System.Windows.Forms.Form form = new Form1(doc))
+            using (Transaction tx = new Transaction(doc))
             {
-                form.ShowDialog();
+                tx.Start("Load Fam");
+
+
+                doc.LoadFamily(path, new MyFamilyLoadOptions(), out Family loadedFamily);
+
+                // TODO Load the window
+
+
+
+                // TODO Register a new service using IUpdater
+
+
+                tx.Commit();
             }
-            //{
-            //    if (form.ShowDialog() == DialogResult.OK)
-            //    {
-            //        TaskDialog.Show("asdhf", form.Location.ToString());
-            //        return Result.Succeeded;
-            //    }
-            //}
-            
 
-            //var f1 = new Form1();
-            //f1.Show();
 
-            //TaskDialog.Show("User choice", f1.val1);
+            //var loadedString = loadedFamily.Name;
+
+            //TaskDialog.Show("title", loadedString);
 
 
 
-
-
-
-            //var win = new TaskDialog("info")
-            //{
-            //    MainContent = "Hi this is testing",
-            //    MainIcon = TaskDialogIcon.TaskDialogIconShield,
-            //    CommonButtons = TaskDialogCommonButtons.Ok
-            //};
-            //win.Show();
 
             return Result.Succeeded;
         }
 
+        public class MyFamilyLoadOptions : IFamilyLoadOptions
+        {
+            public bool OnFamilyFound(bool familyInUse, out bool overwriteParameterValues)
+            {
+                //throw new NotImplementedException();
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
+                if (familyInUse)
+                {
+                    overwriteParameterValues = true;
+                    TaskDialog.Show("Found", "Family is found and replaced");
+                    return true;
+                }
+
+                overwriteParameterValues = false;
+                return false;
+            }
+
+            public bool OnSharedFamilyFound(Family sharedFamily, bool familyInUse, out FamilySource source,
+                out bool overwriteParameterValues)
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+
+
+        # region GetPath Method
+
         public static string GetPath()
         {
             var commandName = typeof(Test1).Namespace + "." + nameof(Test1);
             return commandName;
         }
 
+        #endregion
     }
 }

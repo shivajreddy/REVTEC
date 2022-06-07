@@ -57,7 +57,6 @@
   <ItemGroup>
     <Compile Include="Commands\Annotations\Helpers\Message.cs" />
     <Compile Include="Commands\Annotations\TagWallLayer.cs" />
-    <Compile Include="Commands\CreateStuff\CBSShiva.cs" />
     <Compile Include="Commands\CreateStuff\CreateBundleSheets.cs" />
     <Compile Include="Commands\CreateStuff\NewBundleSheet.cs">
       <SubType>Form</SubType>
@@ -66,6 +65,7 @@
       <DependentUpon>NewBundleSheet.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\EditStuff\EditButton.cs" />
+    <Compile Include="Commands\FamilyStuff\FamilyManager.cs" />
     <Compile Include="Commands\Selection\SelectionFilterByCategory.cs" />
     <Compile Include="Commands\TestingLab\CustomAvailablity.cs" />
     <Compile Include="Commands\TestingLab\Form1.cs">
@@ -87,5 +87,6 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

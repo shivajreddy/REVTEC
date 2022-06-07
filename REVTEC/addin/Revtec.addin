@@ -2,7 +2,7 @@
 <RevitAddIns>
 	<AddIn Type="Application">
 		<!--Name of the plugin, the user sees in always load popup window-->
-		<Name>REVTEC-1.1.0</Name>
+		<Name>REVTEC-1.2.0</Name>
 		<Assembly>Revtec.dll</Assembly>
 		<FullClassName>Revtec.Main</FullClassName>
 		<ClientId>f13228a6-3696-4d00-b6c4-ef96a27168ad</ClientId>

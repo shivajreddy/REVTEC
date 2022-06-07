@@ -53,5 +53,8 @@
   <ItemGroup>
     <EmbeddedResource Include="Images\Icons\bundle_sheets.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Icons\family_manager.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -79,7 +79,6 @@ namespace Revtec.core.Commands.CreateStuff
             // 3. Create List of SheetNumbers 
             var sheetNumbers = GenerateSheetNumbers(PrefixSheetNumberPart1, PrefixSheetNumberPart2, NumberOfSheets);
 
-            Console.WriteLine(sheetNumbers);
             // 4. Loop n times, inside the transaction. Each time -> Create sheet, set number, set name
             using (Transaction ts = new Transaction(Doc, "Create Bundle Sheets"))
             {

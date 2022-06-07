@@ -32,7 +32,7 @@ namespace Revtec
         public void Initialize(UIControlledApplication app)
         {
             // Create Ribbon Tab
-            const string tabName = "REVTEC-1.1.0";
+            const string tabName = "REVTEC-1.2.0";
             app.CreateRibbonTab(tabName);
 
             ////////////////////////////////////////    "Create Stuff" Panel    //////////////////////////////////////// 
@@ -53,18 +53,25 @@ namespace Revtec
             // Add button to panel
             RevitPushButton.Create(buttonDataModel);
 
-            //// Generate button data
-            //var createBundleSheetsDataModel = new RevitPushButtonDataModel
-            //{
-            //    Label = "Create Sheet Bundle",
-            //    Panel = createStuffPanel,
-            //    Tooltip = "Create multiple sheets with custom sheet number and names",
-            //    IconImageName = "bundle_sheets.ico",
-            //    TooltipImageName = "bundle_sheets.ico",
-            //    CommandNamespacePath = Revtec.core.Commands.CreateStuff.CBSShiva.GetPath()
-            //};
-            //// Add button panel
-            //RevitPushButton.Create(createBundleSheetsDataModel);
+
+            ////////////////////////////////////////    "Families++" Panel    //////////////////////////////////////// 
+            const string familiesPanelName = "Families++";
+            var familiesPanel = app.CreateRibbonPanel(tabName, familiesPanelName);
+
+            //////////      Add buttons to Panel    //////////
+            // Generate button data
+            var familiesPanelFamilyManagerDataModel = new RevitPushButtonDataModel
+            {
+                Label = "Family Manager",
+                Panel = familiesPanel,
+                Tooltip = "Tool tip information goes here",
+                IconImageName = "family_manager.ico",
+                TooltipImageName = "family_manager.ico",
+                CommandNamespacePath = Revtec.core.Commands.FamilyStuff.FamilyManager.GetPath()
+            };
+            // Add button to panel
+            RevitPushButton.Create(familiesPanelFamilyManagerDataModel);
+
 
             ////////////////////////////////////////    "Edit Stuff" Panel    //////////////////////////////////////// 
             //const string panel2PanelName = " % Edit %";
@@ -103,35 +110,35 @@ namespace Revtec
             //RevitPushButton.Create(annotationButtonDataModel1);
 
             //////////////////////////////////////////    "Test" Panel    //////////////////////////////////////// 
-            //const string testPanelName = " && Testing &&";
-            //var testPanel = app.CreateRibbonPanel(tabName, testPanelName);
+            const string testPanelName = " && Testing &&";
+            var testPanel = app.CreateRibbonPanel(tabName, testPanelName);
 
-            ////////////      Add buttons to Panel    //////////
-            //// Generate button data
-            //var test1ButtonDataModel = new RevitPushButtonDataModel()
-            //{
-            //    Label = "Test 1",
-            //    Panel = testPanel,
-            //    Tooltip = "tool tip for this",
-            //    IconImageName = "button1.ico",
-            //    TooltipImageName = "button1.ico",
-            //    CommandNamespacePath = Revtec.core.Commands.TestingLab.Test1.GetPath()
-            //};
-            //// Add button to panel
+            //////////      Add buttons to Panel    //////////
+            // Generate button data
+            var test1ButtonDataModel = new RevitPushButtonDataModel()
+            {
+                Label = "Test 1",
+                Panel = testPanel,
+                Tooltip = "tool tip for this",
+                IconImageName = "button1.ico",
+                TooltipImageName = "button1.ico",
+                CommandNamespacePath = Revtec.core.Commands.TestingLab.Test1.GetPath()
+            };
+            // Add button to panel
 
-            //RevitPushButton.Create(test1ButtonDataModel);
-            ////var test1Button = RevitPushButton.Create(test1ButtonDataModel) as RibbonItem;
-            ////test1Button.Visible = false;
-            //// set this function based on the project
-            ////test1Button.Enabled = false;
+            RevitPushButton.Create(test1ButtonDataModel);
+            //var test1Button = RevitPushButton.Create(test1ButtonDataModel) as RibbonItem;
+            //test1Button.Visible = false;
+            // set this function based on the project
+            //test1Button.Enabled = false;
 
-            //////////////////////////// Raw button ///////////////////
-            //PushButtonData rawData = new PushButtonData("raw", "raw",
-            //    Revtec.core.CoreAssembly.GetCoreAssemblyLocation(), Revtec.core.Commands.TestingLab.Test1.GetPath());
-            //rawData.LargeImage = Revtec.res.ResourceImage.GetIcon("button1.ico");
-            //rawData.AvailabilityClassName = "Revtec.core.Commands.TestingLab.CustomAvailability";
+            ////////////////////////// Raw button -> Family only button///////////////////
+            PushButtonData rawData = new PushButtonData("raw", "raw",
+                Revtec.core.CoreAssembly.GetCoreAssemblyLocation(), Revtec.core.Commands.TestingLab.Test1.GetPath());
+            rawData.LargeImage = Revtec.res.ResourceImage.GetIcon("button1.ico");
+            rawData.AvailabilityClassName = "Revtec.core.Commands.TestingLab.CustomAvailability";
 
-            //testPanel.AddItem(rawData);
+            testPanel.AddItem(rawData);
 
         }
 
