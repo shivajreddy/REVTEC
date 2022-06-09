@@ -24,23 +24,22 @@ namespace Revtec.core.Commands.FamilyStuff
             // Show the existing families
             FilteredElementCollector collector = new FilteredElementCollector(doc);
 
+            
+
             collector.OfClass(typeof(Family));
 
             IList<Element> FamilySymbols = collector.ToElements();
 
             List<string> names = new List<string>();
             names.Add(FamilySymbols.Count.ToString());
+
+            List<string> catNames = new List<string>();
+
             foreach (var familySymbol in FamilySymbols)
             {
                 names.Add(familySymbol.Name.ToString());
             }
             this.listBox1.DataSource = names;
-
-
-
-            //this.listBox1.DataSource = 
-
-
         }
 
         private void btnOk_Click(object sender, EventArgs e)
