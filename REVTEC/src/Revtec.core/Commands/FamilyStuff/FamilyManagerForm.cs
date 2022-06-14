@@ -49,6 +49,14 @@ namespace Revtec.core.Commands.FamilyStuff
             //this.Controls.Add(box1);
             groupBox1.Controls.Add(box1);
 
+            //var families = collector.Select(e => e.GetTypeId)
+            //    .Distinct()
+            //    .Select(id => document.GetElement(id))
+            //    .Cast<FamilySymbol>()
+            //    .Select(familySymbol => familySymbol.Family)
+            //    .DistinctBy(family => family.Id)
+            //    .ToArray();
+
             this.dataGridView1.DataSource = names;
 
         }
