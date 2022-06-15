@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Windows.Documents;
 using System.Windows.Forms;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
@@ -44,18 +45,26 @@ namespace Revtec.core.Commands.FamilyStuff
             {
                 names.Add(familySymbol.Name.ToString());
             }
-            this.listBox1.DataSource = names;
 
-
-            // set the names of the categories in the data grid
-            //this.dataGridView1.DataSource = names;
 
             // set the category names 
-            //this.dataGridView1.DataSource = categoryNames;
-            DataSet ds = new DataSet();
-            ds.Relations.Add()
-            this.DGcategoryNames = categoryNames;
-            //this.DGcategoryNames.DataGridView.DataSource = categoryNames;
+            DataTable dt = new DataTable();
+            dt.Columns.Add("CategoryName", typeof(string));
+            dt.Columns.Add("FamilyName", typeof(string));
+            dt.Columns.Add("ElementId", typeof(int));
+            dt.Columns.Add("Selection", typeof(bool));
+
+            DataRow row = dt.NewRow();
+
+            row["CategoryName"] = "test cat1";
+            row["FamilyName"] = "test fam1";
+            row["ElementId"] = 123;
+            row["Selection"] = false;
+
+            dt.Rows.Add(row);
+
+
+            this.dataGridView1.DataSource = dt;
 
         }
 
@@ -81,7 +90,6 @@ namespace Revtec.core.Commands.FamilyStuff
                 }
 
                 return categoryNames;
-
             }
 
         }
