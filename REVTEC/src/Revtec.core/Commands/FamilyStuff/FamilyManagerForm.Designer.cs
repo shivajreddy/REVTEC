@@ -34,6 +34,8 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.DGcategoryNames = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DGfamilyNames = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -91,12 +93,29 @@
             // 
             this.dataGridView1.AllowUserToOrderColumns = true;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.DGcategoryNames,
+            this.DGfamilyNames});
             this.dataGridView1.Location = new System.Drawing.Point(714, 87);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.RowTemplate.Height = 28;
             this.dataGridView1.Size = new System.Drawing.Size(462, 549);
             this.dataGridView1.TabIndex = 4;
+            // 
+            // DGcategoryNames
+            // 
+            this.DGcategoryNames.HeaderText = "Catgory Names";
+            this.DGcategoryNames.MinimumWidth = 8;
+            this.DGcategoryNames.Name = "DGcategoryNames";
+            this.DGcategoryNames.Width = 150;
+            // 
+            // DGfamilyNames
+            // 
+            this.DGfamilyNames.HeaderText = "Family Names";
+            this.DGfamilyNames.MinimumWidth = 8;
+            this.DGfamilyNames.Name = "DGfamilyNames";
+            this.DGfamilyNames.Width = 150;
             // 
             // FamilyManagerForm
             // 
@@ -126,5 +145,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DGcategoryNames;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DGfamilyNames;
     }
 }

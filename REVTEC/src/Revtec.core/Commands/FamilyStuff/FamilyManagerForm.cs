@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Windows.Forms;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
@@ -22,10 +23,13 @@ namespace Revtec.core.Commands.FamilyStuff
             InitializeComponent();
             Doc = doc;
 
+            // get the category names
+            List<string> categoryNames = Custom.Greet(doc);
+
             // Show the existing families
             FilteredElementCollector collector = new FilteredElementCollector(doc);
 
-            
+
 
             collector.OfClass(typeof(Family));
 
@@ -42,22 +46,43 @@ namespace Revtec.core.Commands.FamilyStuff
             }
             this.listBox1.DataSource = names;
 
-            // add a checkbox to the form
-            CheckBox box1 = new CheckBox();
-            //box1.Appearance = Appearance.Button;
-            box1.Text = "yoooolo";
-            //this.Controls.Add(box1);
-            groupBox1.Controls.Add(box1);
 
-            //var families = collector.Select(e => e.GetTypeId)
-            //    .Distinct()
-            //    .Select(id => document.GetElement(id))
-            //    .Cast<FamilySymbol>()
-            //    .Select(familySymbol => familySymbol.Family)
-            //    .DistinctBy(family => family.Id)
-            //    .ToArray();
+            // set the names of the categories in the data grid
+            //this.dataGridView1.DataSource = names;
 
-            this.dataGridView1.DataSource = names;
+            // set the category names 
+            //this.dataGridView1.DataSource = categoryNames;
+            DataSet ds = new DataSet();
+            ds.Relations.Add()
+            this.DGcategoryNames = categoryNames;
+            //this.DGcategoryNames.DataGridView.DataSource = categoryNames;
+
+        }
+
+        public class Custom
+        {
+            public static List<string> Greet(Document doc)
+            {
+                // Get the Category Names
+                FilteredElementCollector collector = new FilteredElementCollector(doc);
+
+                ICollection<Element> elements = collector.OfClass(typeof(Family)).ToElements();
+
+                List<string> familyNames = new List<string>();
+                List<string> categoryNames = new List<string>();
+
+                foreach (var element in elements)
+                {
+                    Family family = element as Family;
+                    Category category = family.FamilyCategory;
+
+                    familyNames.Add(family.Name.ToString());
+                    categoryNames.Add(category.Name.ToString());
+                }
+
+                return categoryNames;
+
+            }
 
         }
 
