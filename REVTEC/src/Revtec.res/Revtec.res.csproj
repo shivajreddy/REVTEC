@@ -56,5 +56,11 @@
   <ItemGroup>
     <EmbeddedResource Include="Images\Icons\family_manager.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Icons\toggle_halftone.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Images\how_to.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

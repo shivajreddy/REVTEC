@@ -92,22 +92,39 @@ namespace Revtec
             //RevitPushButton.Create(editButtonDataModel);
 
             //////////////////////////////////////////    "Annotation" Panel    //////////////////////////////////////// 
-            //const string annotationPanelName = " Annotations ";
-            //var annotationPanel = app.CreateRibbonPanel(tabName, annotationPanelName);
+            const string annotationPanelName = " Annotations ";
+            var annotationPanel = app.CreateRibbonPanel(tabName, annotationPanelName);
 
-            ////////////      Add buttons to Panel    //////////
-            //// Generate button data
-            //var annotationButtonDataModel1 = new RevitPushButtonDataModel()
-            //{
-            //    Label = "Annotation1",
-            //    Panel = annotationPanel,
-            //    Tooltip = "tool tip for this",
-            //    IconImageName = "button1.ico",
-            //    TooltipImageName = "button1.ico",
-            //    CommandNamespacePath = Revtec.core.Commands.Annotations.TagWallLayer.GetPath()
-            //};
-            //// Add button to panel
-            //RevitPushButton.Create(annotationButtonDataModel1);
+            //////////      Add buttons to Panel    //////////
+            // btn1. Generate button data
+            var annotationButtonDataModel1 = new RevitPushButtonDataModel()
+            {
+                Label = "Annotation1",
+                Panel = annotationPanel,
+                Tooltip = "tool tip for this",
+                IconImageName = "button1.ico",
+                TooltipImageName = "button1.ico",
+                CommandNamespacePath = Revtec.core.Commands.Annotations.TagWallLayer.GetPath()
+            };
+            // btn1. Add button to panel
+            RevitPushButton.Create(annotationButtonDataModel1);
+
+
+            // btn2. Generate button data
+            var annotationButtonDataModel2 = new RevitPushButtonDataModel()
+            {
+                Label = "Toggle HalfTone",
+                Panel = annotationPanel,
+                Tooltip = "Toggle for current selected elements",
+                IconImageName = "toggle_halftone.ico",
+                TooltipImageName = "toggle_halftone.ico",
+                CommandNamespacePath = Revtec.core.Commands.Annotations.ToggleHalfTone.GetPath()
+            };
+            // btn2. Add button to panel
+            RevitPushButton.Create(annotationButtonDataModel2);
+
+
+
 
             //////////////////////////////////////////    "Test" Panel    //////////////////////////////////////// 
             const string testPanelName = " && Testing &&";
@@ -122,7 +139,8 @@ namespace Revtec
                 Tooltip = "tool tip for this",
                 IconImageName = "button1.ico",
                 TooltipImageName = "button1.ico",
-                CommandNamespacePath = Revtec.core.Commands.TestingLab.Test1.GetPath()
+                //CommandNamespacePath = Revtec.core.Commands.TestingLab.Test1.GetPath()
+                CommandNamespacePath = Revtec.core.Commands.Annotations.ToggleHalfTone.GetPath()
             };
             // Add button to panel
 

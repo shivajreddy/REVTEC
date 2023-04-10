@@ -1,0 +1,11 @@
+﻿To add new icons in the project.
+
+
+1. Download/make the icon and it can be saved on to anywhere on the machine
+2. Convert it to .ico, dont just change the name.
+2.1. Use this https://www.icoconverter.com/
+2.2. select the options: sizes - 32 Pixels, BitDepth-32bits. Hit convert
+2.3. rename the file to command's name or appropriate
+3. Now right click on icons folder in VisualStudio, select 'Add Existing Item'
+3.1. choose the newly download .ico file
+3.2. right click this newly added item, go to properties, for build action set to 'Embedded resource' 
