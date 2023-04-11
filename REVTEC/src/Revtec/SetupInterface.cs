@@ -36,7 +36,7 @@ namespace Revtec
             app.CreateRibbonTab(tabName);
 
             ////////////////////////////////////////    "Create Stuff" Panel    //////////////////////////////////////// 
-            const string panel1PanelName = "+ Create +";
+            const string panel1PanelName = "Create";
             var createStuffPanel = app.CreateRibbonPanel(tabName, panel1PanelName);
 
             //////////      Add buttons to Panel    //////////
@@ -54,8 +54,9 @@ namespace Revtec
             RevitPushButton.Create(buttonDataModel);
 
 
+            /*
             ////////////////////////////////////////    "Families++" Panel    //////////////////////////////////////// 
-            const string familiesPanelName = "Families++";
+            const string familiesPanelName = "Families";
             var familiesPanel = app.CreateRibbonPanel(tabName, familiesPanelName);
 
             //////////      Add buttons to Panel    //////////
@@ -71,6 +72,8 @@ namespace Revtec
             };
             // Add button to panel
             RevitPushButton.Create(familiesPanelFamilyManagerDataModel);
+             *
+             */
 
 
             ////////////////////////////////////////    "Edit Stuff" Panel    //////////////////////////////////////// 
@@ -96,21 +99,8 @@ namespace Revtec
             var annotationPanel = app.CreateRibbonPanel(tabName, annotationPanelName);
 
             //////////      Add buttons to Panel    //////////
+
             // btn1. Generate button data
-            var annotationButtonDataModel1 = new RevitPushButtonDataModel()
-            {
-                Label = "Annotation1",
-                Panel = annotationPanel,
-                Tooltip = "tool tip for this",
-                IconImageName = "button1.ico",
-                TooltipImageName = "button1.ico",
-                CommandNamespacePath = Revtec.core.Commands.Annotations.TagWallLayer.GetPath()
-            };
-            // btn1. Add button to panel
-            RevitPushButton.Create(annotationButtonDataModel1);
-
-
-            // btn2. Generate button data
             var annotationButtonDataModel2 = new RevitPushButtonDataModel()
             {
                 Label = "Toggle HalfTone",
@@ -120,43 +110,58 @@ namespace Revtec
                 TooltipImageName = "toggle_halftone.ico",
                 CommandNamespacePath = Revtec.core.Commands.Annotations.ToggleHalfTone.GetPath()
             };
-            // btn2. Add button to panel
+            // btn1. Add button to panel
             RevitPushButton.Create(annotationButtonDataModel2);
+
+            // btn2. ConvertCase - SplitButton
+            var buttonGroup = new RevitSplitButton(annotationPanel, "n", "t");
+
+            var annotationButtonSplitButtonData1 = new RevitPushButtonDataModel()
+            {
+                Label = "All Caps",
+                Panel = annotationPanel,
+                Tooltip = "Convert all characters to capital letters",
+                IconImageName = "all_caps.ico",
+                TooltipImageName = "all_caps.ico",
+                CommandNamespacePath = Revtec.core.Commands.Annotations.ToggleHalfTone.GetPath()
+            };
+            var annotationButtonSplitButtonData2 = new RevitPushButtonDataModel()
+            {
+                Label = "CamelCase",
+                Panel = annotationPanel,
+                Tooltip = "Convert all characters to Camel Case",
+                IconImageName = "camel_case.ico",
+                TooltipImageName = "camel_case.ico",
+                CommandNamespacePath = Revtec.core.Commands.Annotations.ToggleHalfTone.GetPath()
+            };
+
+            // btn2. Add PushButton's to SplitButton group
+            buttonGroup.AddRevitPushButton(annotationButtonSplitButtonData1);
+            buttonGroup.AddRevitPushButton(annotationButtonSplitButtonData2);
 
 
 
 
             //////////////////////////////////////////    "Test" Panel    //////////////////////////////////////// 
-            const string testPanelName = " && Testing &&";
-            var testPanel = app.CreateRibbonPanel(tabName, testPanelName);
+            //const string testPanelName = " && Testing &&";
+            //var testPanel = app.CreateRibbonPanel(tabName, testPanelName);
 
             //////////      Add buttons to Panel    //////////
-            // Generate button data
-            var test1ButtonDataModel = new RevitPushButtonDataModel()
-            {
-                Label = "Test 1",
-                Panel = testPanel,
-                Tooltip = "tool tip for this",
-                IconImageName = "button1.ico",
-                TooltipImageName = "button1.ico",
-                //CommandNamespacePath = Revtec.core.Commands.TestingLab.Test1.GetPath()
-                CommandNamespacePath = Revtec.core.Commands.Annotations.ToggleHalfTone.GetPath()
-            };
-            // Add button to panel
-
-            RevitPushButton.Create(test1ButtonDataModel);
             //var test1Button = RevitPushButton.Create(test1ButtonDataModel) as RibbonItem;
             //test1Button.Visible = false;
             // set this function based on the project
             //test1Button.Enabled = false;
 
             ////////////////////////// Raw button -> Family only button///////////////////
+            /*
             PushButtonData rawData = new PushButtonData("raw", "raw",
                 Revtec.core.CoreAssembly.GetCoreAssemblyLocation(), Revtec.core.Commands.TestingLab.Test1.GetPath());
             rawData.LargeImage = Revtec.res.ResourceImage.GetIcon("button1.ico");
             rawData.AvailabilityClassName = "Revtec.core.Commands.TestingLab.CustomAvailability";
 
             testPanel.AddItem(rawData);
+             *
+             */
 
         }
 

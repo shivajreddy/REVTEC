@@ -61,6 +61,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\how_to.txt" />
+    <EmbeddedResource Include="Images\Icons\camel_case.ico" />
+    <EmbeddedResource Include="Images\Icons\all_caps.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

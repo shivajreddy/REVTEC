@@ -71,6 +71,7 @@
     </Compile>
     <Compile Include="Revit\RevitPushButton.cs" />
     <Compile Include="Revit\RevitPushButtonDataModel.cs" />
+    <Compile Include="Revit\RevitSplitButton.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

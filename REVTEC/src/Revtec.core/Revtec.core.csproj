@@ -55,6 +55,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\Annotations\ConvertCase.cs" />
     <Compile Include="Commands\Annotations\Helpers\Message.cs" />
     <Compile Include="Commands\Annotations\TagWallLayer.cs" />
     <Compile Include="Commands\Annotations\ToggleHalfTone.cs" />
