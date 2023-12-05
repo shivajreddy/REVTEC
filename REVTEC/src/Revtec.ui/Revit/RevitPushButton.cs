@@ -27,9 +27,18 @@ namespace Revtec.ui.Revit
             // Sets the button data
             var btnData = new PushButtonData(btnDataName, data.Label, Revtec.core.CoreAssembly.GetCoreAssemblyLocation(), data.CommandNamespacePath)
             {
-                
-                LargeImage = Revtec.res.ResourceImage.GetIcon(data.IconImageName),
-                ToolTipImage = Revtec.res.ResourceImage.GetIcon(data.IconImageName)
+                // 16x16 .icon image
+                Image = Revtec.res.ResourceImage.GetIcon(data.IconImageName),   
+                // 32x32 .icon image
+                LargeImage = Revtec.res.ResourceImage.GetIcon(data.IconLargeImageName),
+                // 32x32 .icon image, same as above should be fine
+                ToolTipImage = Revtec.res.ResourceImage.GetIcon(data.IconLargeImageName),
+
+                ToolTip = data.Tooltip,
+
+                LongDescription = data.LongDescription,
+
+
             };
 
             // Set the availability class here

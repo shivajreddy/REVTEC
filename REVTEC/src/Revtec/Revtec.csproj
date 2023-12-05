@@ -93,6 +93,21 @@ if exist "$(AppData)\Autodesk\REVIT\Addins\2022" copy "$(ProjectDir)$(OutputPath
 if exist "$(AppData)\Autodesk\REVIT\Addins\2022" copy "$(ProjectDir)$(OutputPath)Revtec.dll" "$(SolutionDir)\addin"
 if exist "$(AppData)\Autodesk\REVIT\Addins\2022" copy "$(ProjectDir)$(OutputPath)Revtec.core.dll" "$(SolutionDir)\addin"
 if exist "$(AppData)\Autodesk\REVIT\Addins\2022" copy "$(ProjectDir)$(OutputPath)Revtec.res.dll" "$(SolutionDir)\addin"
-if exist "$(AppData)\Autodesk\REVIT\Addins\2022" copy "$(ProjectDir)$(OutputPath)Revtec.ui.dll" "$(SolutionDir)\addin"</PostBuildEvent>
+if exist "$(AppData)\Autodesk\REVIT\Addins\2022" copy "$(ProjectDir)$(OutputPath)Revtec.ui.dll" "$(SolutionDir)\addin"
+
+
+
+if exist "$(AppData)\Autodesk\REVIT\Addins\2024" copy "$(SolutionDir)\addin\Revtec.addin" "$(AppData)\Autodesk\REVIT\Addins\2022"
+
+if exist "$(AppData)\Autodesk\REVIT\Addins\2024" copy "$(ProjectDir)$(OutputPath)Revtec.dll" "$(AppData)\Autodesk\REVIT\Addins\2024"
+if exist "$(AppData)\Autodesk\REVIT\Addins\2024" copy "$(ProjectDir)$(OutputPath)Revtec.core.dll" "$(AppData)\Autodesk\REVIT\Addins\2024"
+if exist "$(AppData)\Autodesk\REVIT\Addins\2024" copy "$(ProjectDir)$(OutputPath)Revtec.res.dll" "$(AppData)\Autodesk\REVIT\Addins\2024"
+if exist "$(AppData)\Autodesk\REVIT\Addins\2024" copy "$(ProjectDir)$(OutputPath)Revtec.ui.dll" "$(AppData)\Autodesk\REVIT\Addins\2024"
+
+if exist "$(AppData)\Autodesk\REVIT\Addins\2024" copy "$(ProjectDir)$(OutputPath)Revtec.dll" "$(SolutionDir)\addin"
+if exist "$(AppData)\Autodesk\REVIT\Addins\2024" copy "$(ProjectDir)$(OutputPath)Revtec.core.dll" "$(SolutionDir)\addin"
+if exist "$(AppData)\Autodesk\REVIT\Addins\2024" copy "$(ProjectDir)$(OutputPath)Revtec.res.dll" "$(SolutionDir)\addin"
+if exist "$(AppData)\Autodesk\REVIT\Addins\2024" copy "$(ProjectDir)$(OutputPath)Revtec.ui.dll" "$(SolutionDir)\addin"
+</PostBuildEvent>
   </PropertyGroup>
 </Project>

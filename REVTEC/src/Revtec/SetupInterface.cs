@@ -5,30 +5,19 @@ using Revtec.ui.Revit;
 
 namespace Revtec
 {
-    /// <summary>
     /// Setup the whole plugins interface -> tabs, panels, buttons
-    /// </summary>
     public class SetupInterface
     {
-        #region SetupInterface Constructor
-
-        /// <summary>
         /// Default constructor
-        /// </summary>
         public SetupInterface()
         {
 
 
         }
 
-        #endregion
-
         #region pulic methods
 
-        /// <summary>
-        /// Initialize all the interface elements on custom created Revit Tab
-        /// </summary>
-        /// <param name="app"></param>
+        /// :: Initialize all the interface elements on custom created Revit Tab
         public void Initialize(UIControlledApplication app)
         {
             // Create Ribbon Tab
@@ -47,6 +36,7 @@ namespace Revtec
                 Panel = createStuffPanel,
                 Tooltip = "Tool tip information goes here",
                 IconImageName = "bundle_sheets.ico",
+                IconLargeImageName = "bundle_sheets.ico",
                 TooltipImageName = "bundle_sheets.ico",
                 CommandNamespacePath = Revtec.core.Commands.CreateStuff.CreateBundleSheets.GetPath()
             };
@@ -107,6 +97,7 @@ namespace Revtec
                 Panel = annotationPanel,
                 Tooltip = "Toggle for current selected elements",
                 IconImageName = "toggle_halftone.ico",
+                IconLargeImageName = "toggle_halftone.ico",
                 TooltipImageName = "toggle_halftone.ico",
                 CommandNamespacePath = Revtec.core.Commands.Annotations.ToggleHalfTone.GetPath()
             };
@@ -118,39 +109,70 @@ namespace Revtec
 
             var annotationButtonSplitButtonData1 = new RevitPushButtonDataModel()
             {
-                Label = "All Caps",
+                Label = "UPPER CASE",
                 Panel = annotationPanel,
                 Tooltip = "Convert all characters to capital letters",
                 IconImageName = "all_caps.ico",
+                IconLargeImageName = "all_caps.ico",
                 TooltipImageName = "all_caps.ico",
-                CommandNamespacePath = Revtec.core.Commands.Annotations.ToggleHalfTone.GetPath()
+                CommandNamespacePath = Revtec.core.Commands.Annotations.ConvertCaseUpper.GetPath()
             };
             var annotationButtonSplitButtonData2 = new RevitPushButtonDataModel()
             {
-                Label = "CamelCase",
+                Label = "Camel Case",
                 Panel = annotationPanel,
                 Tooltip = "Convert all characters to Camel Case",
+
+                // TODO: fix the icons not showing in quick access toolbar
                 IconImageName = "camel_case.ico",
+                IconLargeImageName = "camel_case.ico",
                 TooltipImageName = "camel_case.ico",
-                CommandNamespacePath = Revtec.core.Commands.Annotations.ToggleHalfTone.GetPath()
+
+                CommandNamespacePath = Revtec.core.Commands.Annotations.ConvertCaseCamelCase.GetPath()
+            };
+            var annotationButtonSplitButtonData3 = new RevitPushButtonDataModel()
+            {
+                Label = "lower case",
+                Panel = annotationPanel,
+                Tooltip = "Convert all characters to lower Case",
+                IconImageName = "lower_case.ico",
+                IconLargeImageName = "lower_case.ico",
+                TooltipImageName = "lower_case.ico",
+                CommandNamespacePath = Revtec.core.Commands.Annotations.ConvertCaseLower.GetPath()
             };
 
             // btn2. Add PushButton's to SplitButton group
             buttonGroup.AddRevitPushButton(annotationButtonSplitButtonData1);
             buttonGroup.AddRevitPushButton(annotationButtonSplitButtonData2);
+            buttonGroup.AddRevitPushButton(annotationButtonSplitButtonData3);
 
 
 
 
-            //////////////////////////////////////////    "Test" Panel    //////////////////////////////////////// 
-            //const string testPanelName = " && Testing &&";
-            //var testPanel = app.CreateRibbonPanel(tabName, testPanelName);
+            //////////////////////////////////////////    "Dev" Panel    //////////////////////////////////////// 
+            const string devPanelName = "DEV";
+            var devPanel= app.CreateRibbonPanel(tabName, devPanelName);
+
+            // Generate button data
+            var devButtonDataModel1 = new RevitPushButtonDataModel()
+            {
+                Label = "Upgrade 24",
+                Panel = devPanel,
+                Tooltip = "Upgrade all files to 2024",
+                IconImageName = "toggle_halftone.ico",
+                IconLargeImageName = "toggle_halftone.ico",
+                TooltipImageName = "toggle_halftone.ico",
+                CommandNamespacePath = Revtec.core.Commands.Revit2024.Revit2024.GetPath()
+            };
+
+            // Add button to panel
+            RevitPushButton.Create(devButtonDataModel1);
 
             //////////      Add buttons to Panel    //////////
-            //var test1Button = RevitPushButton.Create(test1ButtonDataModel) as RibbonItem;
-            //test1Button.Visible = false;
+            var devButton1 = RevitPushButton.Create(devButtonDataModel1) as RibbonItem;
+            devButton1.Visible = false;
             // set this function based on the project
-            //test1Button.Enabled = false;
+            devButton1.Enabled = false;
 
             ////////////////////////// Raw button -> Family only button///////////////////
             /*
