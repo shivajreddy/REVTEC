@@ -1,0 +1,181 @@
+﻿<Window x:Class="Revtec.core.Commands.EagleKitchen.EagleKitchenMainWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Revtec.core.Commands.EagleKitchen"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             Title="Eagle Kitchen" Width="600" Height="300"
+             Topmost="True"
+             >
+
+    <Window.Resources>
+        <Style x:Key="Style1" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="Navy"/>
+        </Style>
+        <Style x:Key="{x:Type TabItem}" TargetType="TabItem">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TabItem}">
+                        <Border>
+                            <Grid>
+                                <Grid>
+                                    <Border x:Name="border" 
+                                            CornerRadius="3,3,0,0"
+                                            Background="WhiteSmoke"/>
+                                </Grid>
+                                <ContentPresenter ContentSource="Header"
+                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="LightBlue"/>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="LightBlue"/>
+                                <!--<Setter Property="FontWeight" Value="Bold"/>-->
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <!--<Grid>
+        <TextBlock x:Name="InfoTextBlock" Text="No object selected" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBox x:Name="TB2" HorizontalAlignment="Left" Margin="367,305,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+    </Grid>-->
+    <Grid>
+        <TabControl>
+
+            <TabItem Header="Selections">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="93*"/>
+                        <ColumnDefinition Width="701*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="5,5,5,5" Grid.ColumnSpan="2">
+                        <TextBlock Text="Total Selected Items: "/>
+                        <TextBlock x:Name="SelectionsTotal" Text="0" FontWeight="Bold"/>
+                    </StackPanel>
+
+                    <!--<CheckBox Grid.Row="2" Content="add to current selection"/>-->
+
+                    <!-- Choose by cabinet configuration -->
+                    <StackPanel Grid.Row="3" Orientation="Horizontal" Grid.ColumnSpan="2">
+                        <StackPanel Margin="10px">
+                            <Button Content="1 Door" Margin="5px" Click="Button_1Door"/>
+                            <Button Content="1 Door + 1 Drawer" Margin="5px" Click="Button_1Door_1Drawer"/>
+                            <Button Content="2 Doors" Margin="5px" Click="Button_2Doors"/>
+                            <Button Content="2 Doors + 1 Drawer" Margin="5px" Click="Button_2Doors_1Drawer"/>
+                            <Button Content="2 Doors + 2 Drawers" Margin="5px" Click="Button_2Doors_2Drawers"/>
+                        </StackPanel>
+                        <CheckBox Content="Add To Current Selection" Height="51" Checked="Add_to_current_selection" Unchecked="Dont_Add_to_current_selection"/>
+                        <StackPanel Margin="10px" Width="619">
+                            <TextBlock Name="SelectedItems" Text="" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Customizations">
+                <StackPanel>
+                    <TabControl>
+                        <TabItem Header="Size">
+                            <Grid>
+                                <TextBlock Text=""/>
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="Style">
+                            <Grid>
+                                <TextBlock Text="Choose available styles"/>
+                                <StackPanel>
+                                    <StackPanel HorizontalAlignment="Left" FlowDirection="LeftToRight" Orientation="Horizontal">
+                                        <Button Click="SetStyleForSelection" Tag="style1">
+                                            <StackPanel>
+                                                <Image Source="../EagleKitchen/Images/Image1.png" Width="100" Height="200"/>
+                                                <TextBlock Text="Style-1: Marquez"/>
+                                            </StackPanel>
+                                        </Button>
+                                        <Button Click="SetStyleForSelection" Tag="style2">
+                                            <StackPanel>
+                                                <Image Source="../EagleKitchen/Images/Image1.png" Width="100" Height="200"/>
+                                            <TextBlock Text="Style-2: Touraine Birch"/>
+                                            </StackPanel>
+                                        </Button>
+                                        <Button Click="SetStyleForSelection" Tag="style3">
+                                            <StackPanel>
+                                                <Image Source="../EagleKitchen/Images/Image1.png" Width="100" Height="200"/>
+                                                <TextBlock Text="Style-3: Salerno Birch"/>
+                                            </StackPanel>
+                                        </Button>
+                                        <Button Click="SetStyleForSelection" Tag="style4">
+                                            <StackPanel>
+                                                <Image Source="../EagleKitchen/Images/Image1.png" Width="100" Height="200"/>
+                                            <TextBlock Text="Style-4: Henning"/>
+                                            </StackPanel>
+                                        </Button>
+                                        <Button Click="SetStyleForSelection" Tag="style5">
+                                            <StackPanel>
+                                                <Image Source="../EagleKitchen/Images/Image1.png" Width="100" Height="200"/>
+                                            <TextBlock Text="Style-5: Still Water"/>
+                                            </StackPanel>
+                                        </Button>
+                                    </StackPanel>
+                                    <StackPanel HorizontalAlignment="Left" FlowDirection="LeftToRight" Orientation="Horizontal">
+                                        <Button Click="SetStyleForSelection" Tag="style6">
+                                            <StackPanel>
+                                                <Image Source="../EagleKitchen/Images/Image1.png" Width="100" Height="200"/>
+                                            <TextBlock Text="Style-6: Fillmore"/>
+                                            </StackPanel>
+                                        </Button>
+                                        <Button Click="SetStyleForSelection" Tag="style7">
+                                            <StackPanel>
+                                                <Image Source="../EagleKitchen/Images/Image1.png" Width="100" Height="200"/>
+                                            <TextBlock Text="Style-7: Logan"/>
+                                            </StackPanel>
+                                        </Button>
+                                        <Button Click="SetStyleForSelection" Tag="style8">
+                                            <StackPanel>
+                                                <Image Source="../EagleKitchen/Images/Image1.png" Width="100" Height="200"/>
+                                            <TextBlock Text="Style-8: Corsica"/>
+                                            </StackPanel>
+                                        </Button>
+                                        <Button Click="SetStyleForSelection" Tag="style9">
+                                            <StackPanel>
+                                                <Image Source="../EagleKitchen/Images/Image1.png" Width="100" Height="200"/>
+                                            <TextBlock Text="Style-9: Langdon"/>
+                                            </StackPanel>
+                                        </Button>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="Finish">
+                            <Grid>
+                                <TextBlock Text="Choose a Finish for your cabinet"/>
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="Handles">
+                            <Grid>
+                                <TextBlock Text="Choose a Finish for your cabinet" Grid.ColumnSpan="4"/>
+                            </Grid>
+                        </TabItem>
+                    </TabControl>
+                </StackPanel>
+            </TabItem>
+
+        </TabControl>
+    </Grid>
+</Window>

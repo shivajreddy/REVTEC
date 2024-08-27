@@ -69,7 +69,22 @@
     <Compile Include="Commands\CreateStuff\NewBundleSheet.Designer.cs">
       <DependentUpon>NewBundleSheet.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\EagleKitchen\Main.cs" />
+    <Compile Include="Commands\Dev\KitchenDesign\FixMirroredHandleSets.cs" />
+    <Compile Include="Commands\EagleKitchen\EagleKitchenMainWindow.xaml.cs">
+      <DependentUpon>EagleKitchenMainWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Commands\EditStuff\EditButton.cs" />
+    <Compile Include="Commands\FamilyReloader\FamilyReloader.cs" />
+    <Compile Include="Commands\FamilyReloader\FamilyReloaderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\FamilyReloader\FamilyReloaderForm.Designer.cs">
+      <DependentUpon>FamilyReloaderForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Commands\FamilyReloader\FamilyReloaderView.xaml.cs">
+      <DependentUpon>FamilyReloaderView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Commands\FamilyStuff\FamilyManager.cs" />
     <Compile Include="Commands\FamilyStuff\FamilyManagerForm.cs">
       <SubType>Form</SubType>
@@ -77,16 +92,17 @@
     <Compile Include="Commands\FamilyStuff\FamilyManagerForm.Designer.cs">
       <DependentUpon>FamilyManagerForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Commands\Revit2024\Revit2024.cs" />
+    <Compile Include="Commands\Dev\Revit2024\Logger.cs" />
+    <Compile Include="Commands\Dev\Revit2024\Revit2024.cs" />
     <Compile Include="Commands\Selection\SelectionFilterByCategory.cs" />
-    <Compile Include="Commands\TestingLab\CustomAvailablity.cs" />
-    <Compile Include="Commands\TestingLab\Form1.cs">
+    <Compile Include="Commands\Dev\CustomAvailablity.cs" />
+    <Compile Include="Commands\Dev\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Commands\TestingLab\Form1.Designer.cs">
+    <Compile Include="Commands\Dev\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Commands\TestingLab\Test1.cs" />
+    <Compile Include="Commands\Dev\Test1.cs" />
     <Compile Include="Commands\Type\WindowType.cs" />
     <Compile Include="CoreAssembly.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -95,16 +111,33 @@
     <EmbeddedResource Include="Commands\CreateStuff\NewBundleSheet.resx">
       <DependentUpon>NewBundleSheet.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Commands\FamilyReloader\FamilyReloaderForm.resx">
+      <DependentUpon>FamilyReloaderForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Commands\FamilyStuff\FamilyManagerForm.resx">
       <DependentUpon>FamilyManagerForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Commands\TestingLab\Form1.resx">
+    <EmbeddedResource Include="Commands\Dev\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Commands\readme.md" />
     <None Include="Properties\DataSources\Revtec.core.Commands.FamilyStuff.FamilyManagerForm.datasource" />
   </ItemGroup>
+  <ItemGroup>
+    <Page Include="Commands\EagleKitchen\EagleKitchenMainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Commands\FamilyReloader\FamilyReloaderView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <Content Include="Commands\EagleKitchen\Images\Image1.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

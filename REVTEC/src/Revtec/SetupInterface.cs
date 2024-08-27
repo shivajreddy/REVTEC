@@ -11,8 +11,6 @@ namespace Revtec
         /// Default constructor
         public SetupInterface()
         {
-
-
         }
 
         #region pulic methods
@@ -38,32 +36,32 @@ namespace Revtec
                 IconImageName = "bundle_sheets.ico",
                 IconLargeImageName = "bundle_sheets.ico",
                 TooltipImageName = "bundle_sheets.ico",
-                CommandNamespacePath = Revtec.core.Commands.CreateStuff.CreateBundleSheets.GetPath()
+                CommandNamespacePath = core.Commands.CreateStuff.CreateBundleSheets.GetPath()
             };
             // Add button to panel
             RevitPushButton.Create(buttonDataModel);
 
 
-            /*
+            // /*
             ////////////////////////////////////////    "Families++" Panel    //////////////////////////////////////// 
             const string familiesPanelName = "Families";
             var familiesPanel = app.CreateRibbonPanel(tabName, familiesPanelName);
 
             //////////      Add buttons to Panel    //////////
             // Generate button data
-            var familiesPanelFamilyManagerDataModel = new RevitPushButtonDataModel
+            var familiesPanelFamilyReloaderDataModel = new RevitPushButtonDataModel
             {
-                Label = "Family Manager",
+                Label = "Family Reloader",
                 Panel = familiesPanel,
                 Tooltip = "Tool tip information goes here",
                 IconImageName = "family_manager.ico",
+                IconLargeImageName = "family_manager.ico",
                 TooltipImageName = "family_manager.ico",
-                CommandNamespacePath = Revtec.core.Commands.FamilyStuff.FamilyManager.GetPath()
+                CommandNamespacePath = Revtec.core.Commands.FamilyStuff.FamilyReloader.GetPath()
             };
             // Add button to panel
-            RevitPushButton.Create(familiesPanelFamilyManagerDataModel);
-             *
-             */
+            RevitPushButton.Create(familiesPanelFamilyReloaderDataModel);
+            // */
 
 
             ////////////////////////////////////////    "Edit Stuff" Panel    //////////////////////////////////////// 
@@ -147,11 +145,26 @@ namespace Revtec
             buttonGroup.AddRevitPushButton(annotationButtonSplitButtonData3);
 
 
+            //////////////////////////////////////////    "Eagle Kitchen" Panel    //////////////////////////////////////// 
+            const string eagleKitchenPanelName = "Eagle Kitchen";
+            var eagleKitchenPanel = app.CreateRibbonPanel(tabName, eagleKitchenPanelName);
+
+            var eagleKitchenMainButtonDataModel = new RevitPushButtonDataModel()
+            {
+                Label = "Main",
+                Panel = eagleKitchenPanel,
+                Tooltip = "Eagle Kitchen's Main Window",
+                IconImageName = "kitchen16.ico", // this is 16x16
+                IconLargeImageName = "kitchen32.ico", // this is 32x32
+                TooltipImageName = "kitchen32.ico", // this is 32x32
+                CommandNamespacePath = Revtec.core.Commands.EagleKitchen.Main.GetPath()
+            };
+            RevitPushButton.Create(eagleKitchenMainButtonDataModel);
 
 
             //////////////////////////////////////////    "Dev" Panel    //////////////////////////////////////// 
             const string devPanelName = "DEV";
-            var devPanel= app.CreateRibbonPanel(tabName, devPanelName);
+            var devPanel = app.CreateRibbonPanel(tabName, devPanelName);
 
             // Generate button data
             var devButtonDataModel1 = new RevitPushButtonDataModel()
@@ -162,7 +175,7 @@ namespace Revtec
                 IconImageName = "toggle_halftone.ico",
                 IconLargeImageName = "toggle_halftone.ico",
                 TooltipImageName = "toggle_halftone.ico",
-                CommandNamespacePath = Revtec.core.Commands.Revit2024.Revit2024.GetPath()
+                CommandNamespacePath = Revtec.core.Commands.Dev.Revit2024.Revit2024.GetPath()
             };
 
             // Add button to panel
@@ -173,6 +186,21 @@ namespace Revtec
             devButton1.Visible = false;
             // set this function based on the project
             devButton1.Enabled = false;
+
+
+            var updateMirrorsModel = new RevitPushButtonDataModel()
+            {
+                Label = "Fix Mirror HandleSets",
+                Panel = devPanel,
+                Tooltip = "Update HandleSet Location for Mirrored instances",
+                IconImageName = "mirror.ico",
+                IconLargeImageName = "mirror.ico",
+                TooltipImageName = "mirror.ico",
+                CommandNamespacePath = Revtec.core.Commands.Dev.KitchenDesign.FixMirroredHandleSets.GetPath()
+            };
+            RevitPushButton.Create(updateMirrorsModel);
+            //updateMirrors.Visible = false;
+            //updateMirrors.Enabled = false;
 
             ////////////////////////// Raw button -> Family only button///////////////////
             /*

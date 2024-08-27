@@ -1,50 +1,48 @@
 ﻿using System;
-using System.Drawing;
-using System.Reflection;
-using System.Windows.Media.Imaging;
 using Autodesk.Revit.UI;
 
 
 namespace Revtec
 {
-    /// <summary>
-    /// RevTec main entry point
-    /// </summary>
+
+    // RevTec main entry point
     public class Main :IExternalApplication
     {
-        #region external application public methods
-
-        /// <summary>
-        /// Called when Revit Starts
-        /// </summary>
-        /// <param name="application"></param>
-        /// <returns></returns>
-        /// <exception cref="System.NotImplementedException"></exception>
-
         public Result OnStartup(UIControlledApplication application)
         {
+
+            // Subscribe to the Idling event
+            application.Idling += OnIdling;
+
+            // Subscribe to the View event
+            //application.ViewActivated += OnViewChanged;
+
 
             // Initiate the application using revtec ui
             var ui = new SetupInterface();
             ui.Initialize(application);
 
-
             return Result.Succeeded;
         }
 
+        private static void OnIdling(object sender, EventArgs e)
+        {
+            var uiApplication = sender as UIApplication;
+
+            // Check if there is an active document
+
+            uiApplication?.ActiveUIDocument?.Selection.GetElementIds();
+        }
 
 
-        /// <summary>
-        /// Called when revit shutsdown
-        /// </summary>
-        /// <param name="application"></param>
-        /// <returns></returns>
-        /// <exception cref="System.NotImplementedException"></exception>
         public Result OnShutdown(UIControlledApplication application)
         {
+
+            // Unsubscribe from the Idling event
+            application.Idling -= OnIdling;
+
+
             return Result.Succeeded;
         }
-
-        #endregion
     }
 }

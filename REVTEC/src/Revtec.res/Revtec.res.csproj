@@ -69,6 +69,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\how_to.txt" />
+    <EmbeddedResource Include="Images\Icons\kitchen32png.png" />
+    <EmbeddedResource Include="Images\Icons\kitchen16.ico" />
+    <EmbeddedResource Include="Images\Icons\kitchen32.ico" />
+    <EmbeddedResource Include="Images\Icons\mirror.ico" />
     <EmbeddedResource Include="Images\Icons\camel_case.ico" />
     <EmbeddedResource Include="Images\Icons\all_caps.ico" />
     <EmbeddedResource Include="Images\Icons\lower_case_small.ico" />
