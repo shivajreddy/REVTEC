@@ -55,13 +55,3 @@
         </StackPanel>
     </Grid>
 </UserControl>
-<!--<TextBlock Text="Source: "/>
-            <TextBlock Text="{Binding SourceFolderPath}"/>
-            <Button Content="Choose Source Folder" Margin="0 10" Padding="10" Click="Source_Button"/>
-
-
-            <TextBlock Text="Target: "/>
-            <TextBlock Text="{Binding TargetFolderPath}"/>
-            <Button Content="Choose Target Folder" Margin="0 10" Padding="10" Click="Target_Button"/>
-
-            <Button Content="Reload Families" Margin="0 10" Padding="10" Click="Reload_Button"/>-->

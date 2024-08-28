@@ -174,7 +174,6 @@ namespace Revtec.core.Commands.FamilyStuff
                 // Step 2: Filter loaded families in the document
                 //List<string> loadedFamiliesToReupload = FilterLoadedFamilies(_doc, sourceFamilyNames);
                 Console.WriteLine("hi");
-                List<string> loadedFamiliesToReupload = FilterLoadedFamiliesFromFiles(_doc, sourceFamilyNames, TargetFolderPath, targetFamilyNamesWithExtension);
 
                 if (sourceFamilyNames.Count == 0)
                 {
@@ -189,7 +188,7 @@ namespace Revtec.core.Commands.FamilyStuff
 
                 // Step 3: Reload the matching families
                 Console.WriteLine("hi");
-                Tuple<List<string>, List<string>> allResults = ReloadFamilies(_doc, TargetFolderPath, targetFamilyNamesWithExtension, SourceFolderPath, loadedFamiliesToReupload);
+                Tuple<List<string>, List<string>> allResults = ReloadFamilies(TargetFolderPath, targetFamilyNamesWithExtension, SourceFolderPath, sourceFamilyNames);
 
 
                 // Update SuccessResults
@@ -213,41 +212,6 @@ namespace Revtec.core.Commands.FamilyStuff
             }
         }
 
-        private List<string> FilterLoadedFamiliesFromFiles(Document doc, List<string> familyNamesToReload, string targetFolder, List<string> targetFileNamesWithExtension)
-        {
-            var filteredFamilies = new HashSet<string>();
-
-            foreach (var file in targetFileNamesWithExtension)
-            {
-                // Construct the full path to the file
-                var filePath = Path.Combine(targetFolder, file);
-
-                // Open the .rfa file
-                using (var tempDoc = doc.Application.OpenDocumentFile(filePath))
-                {
-                    // Collect family symbols from the document
-                    var collector = new FilteredElementCollector(tempDoc).OfClass(typeof(FamilySymbol));
-
-                    foreach (FamilySymbol familySymbol in collector)
-                    {
-                        Family family = familySymbol.Family;
-                        // Filter for family symbols that we are looking for i.e., source-families & Dont add duplicates
-                        if (familyNamesToReload.Contains(family.Name) && !filteredFamilies.Contains(family.Name))
-                        {
-                            filteredFamilies.Add(family.Name);
-                        }
-                    }
-
-                    // Close the document after processing
-                    tempDoc.Close(false);
-                }
-            }
-
-            return filteredFamilies.ToList();
-        }
-
-
-
 
         private List<string> GetRfaFiles(string folder)
         {
@@ -268,7 +232,7 @@ namespace Revtec.core.Commands.FamilyStuff
             return rfaFiles;
         }
 
-        private Tuple<List<string>, List<string>> ReloadFamilies(Document doc, string targetFolder, List<string> targetFamilyNamesWithExtension, string sourceFolder, List<string> loadedFamilies)
+        private Tuple<List<string>, List<string>> ReloadFamilies(string targetFolder, List<string> targetFamilyNamesWithExtension, string sourceFolder, List<string> sourceFamilyNames)
         {
             var successResults = new List<string>();
             var failedResults = new List<string>();
@@ -281,7 +245,8 @@ namespace Revtec.core.Commands.FamilyStuff
                 Document targetFamilyDoc = null;
                 try
                 {
-                    targetFamilyDoc = doc.Application.OpenDocumentFile(targetFamilyPath);
+                    //_doc is the project that you are working on, so using that get the current active Revit process
+                    targetFamilyDoc = _doc.Application.OpenDocumentFile(targetFamilyPath);
                 }
                 catch (Exception ex)
                 {
@@ -290,21 +255,31 @@ namespace Revtec.core.Commands.FamilyStuff
                     continue;
                 }
 
+                List<string> loadedFamiliesToReupload = FilterLoadedFamiliesForGivenDocument(targetFamilyDoc, sourceFamilyNames, sourceFolder);
+
+                /* // Testing
+                foreach (var loadedFamily in loadedFamiliesToReupload)
+                {
+                    successResults.Add($"{targetFamily}::{loadedFamily}: this will be reloaded");
+                }
+                continue;
+                */
+
                 using (Transaction t = new Transaction(targetFamilyDoc, "Auto ReLoad Family"))
                 {
                     t.Start();
 
-                    foreach (var loadedFamily in loadedFamilies)
+                    foreach (var loadedFamily in loadedFamiliesToReupload)
                     {
                         string sourceFamilyPath = Path.Combine(sourceFolder, $"{loadedFamily}.rfa");
 
-                        FamilyLoadOptions familyOptions = new FamilyLoadOptions();
+                        FamilyLoadOptionsHandler familyOptionsHandler = new FamilyLoadOptionsHandler();
                         Family loadedFamilyInstance;
-                        bool loadResult = targetFamilyDoc.LoadFamily(sourceFamilyPath, familyOptions, out loadedFamilyInstance);
+                        bool loadResult = targetFamilyDoc.LoadFamily(sourceFamilyPath, familyOptionsHandler, out loadedFamilyInstance);
 
                         if (loadResult)
                         {
-                            successResults.Add($"{targetFamily}::{loadedFamily}: Successfully reloaded");
+                            successResults.Add($"{targetFamily}::{loadedFamilyInstance.Name}: Successfully reloaded");
                         }
                         else
                         {
@@ -315,12 +290,44 @@ namespace Revtec.core.Commands.FamilyStuff
                     t.Commit();
                 }
 
+                // Save the temporary doc
+                //targetFamilyDoc.Save();
+
                 // Close the temporary document after processing
-                targetFamilyDoc.Close(false);
+                bool isDocumentSaved = targetFamilyDoc.Close(true);
+                if (isDocumentSaved)
+                {
+                    successResults.Add($"{targetFamily}:: Saved Successfully");
+                }
+                else
+                {
+                    failedResults.Add($"{targetFamily}:: Failed to Save");
+
+                }
+            }
+
+            return new Tuple<List<string>, List<string>>(successResults, failedResults);
+        }
+        private List<string> FilterLoadedFamiliesForGivenDocument(Document doc, List<string> sourceFamilyNames, string sourceFolder)
+        {
+            var filteredFamilies = new HashSet<string>();
+
+
+            // Collect family symbols from the document
+            var collector = new FilteredElementCollector(doc).OfClass(typeof(FamilySymbol));
+
+            foreach (FamilySymbol familySymbol in collector)
+            {
+                Family family = familySymbol.Family;
+                // Filter for family symbols that we are looking for i.e., source-families & Dont add duplicates
+                if (sourceFamilyNames.Contains(family.Name) && !filteredFamilies.Contains(family.Name))
+                {
+                    filteredFamilies.Add(family.Name);
+                }
             }
 
 
-            return new Tuple<List<string>, List<string>>(successResults, failedResults);
+            return filteredFamilies.ToList();
         }
 
 
@@ -337,7 +344,7 @@ namespace Revtec.core.Commands.FamilyStuff
 
     }
 
-    public class FamilyLoadOptions : IFamilyLoadOptions
+    public class FamilyLoadOptionsHandler : IFamilyLoadOptions
     {
         public bool OnFamilyFound(bool familyInUse, out bool overwriteParameterValues)
         {
@@ -345,16 +352,14 @@ namespace Revtec.core.Commands.FamilyStuff
             return true;
         }
 
-        public bool OnSharedFamilyFound(Family sharedFamily, bool familyInUse, FamilySource source, out bool overwriteParameterValues)
+        public bool OnSharedFamilyFound(Family sharedFamily, bool familyInUse, out FamilySource source, out bool overwriteParameterValues)
         {
+            familyInUse = true;
             overwriteParameterValues = true;
+            source = FamilySource.Family;
             return true;
         }
 
-        public bool OnSharedFamilyFound(Family sharedFamily, bool familyInUse, out FamilySource source, out bool overwriteParameterValues)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
 
