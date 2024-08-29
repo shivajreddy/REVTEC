@@ -1,57 +1,83 @@
-﻿<UserControl x:Class="Revtec.core.Commands.FamilyStuff.FamilyReloaderView"
+﻿<Window x:Class="Revtec.core.Commands.FamilyStuff.FamilyReloaderView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d" 
-             MinWidth="1000" MinHeight="1000"
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="White">
+             Width="1000" Height="1050"
+             ResizeMode="NoResize"
+             >
+    <Grid Background="White" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
         <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 
-            <Border BorderBrush="#FF000000" BorderThickness="1" CornerRadius="8" Margin="10">
+
+            <Border BorderBrush="LightGray" BorderThickness="1" CornerRadius="8" Margin="10">
                 <StackPanel Margin="20 0">
                     <TextBlock Foreground="Gray"  Text="Every individual family that is found in this folder will be reloaded." TextAlignment="Center"/>
                     <TextBlock Foreground="Gray"  Text="Example: choose all panel styles" TextAlignment="Center"/>
                     <TextBlock Text="Source: "/>
                     <TextBlock Text="{Binding SourceFolderPath}"/>
-                    <Button Content="Choose Source Folder" Margin="0 10" Padding="10" Click="Source_Button" Width="160"/>
-                    <Button Content="Fetch Source Families" Margin="0 10" Padding="10" Click="FetchSourceFamilies_Button" Width="160"/>
+                    <Button Content="Choose Source Folder" Margin="0 10" Padding="10" Click="Source_Button" Width="200"/>
+                    <Button Content="Fetch Source Families" Margin="0 10" Padding="10" Click="FetchSourceFamilies_Button" Width="200"/>
 
                     <ListBox ItemsSource="{Binding SourceFamilyNames}" Height="100" Margin="0 10"/>
                 </StackPanel>
             </Border>
 
-            <Border BorderBrush="#FF000000" BorderThickness="1" CornerRadius="8" Margin="10">
+            <Border BorderBrush="LightGray" BorderThickness="1" CornerRadius="8" Margin="10">
                 <StackPanel Margin="20 0">
                     <TextBlock Foreground="Gray" Text="For every family found in this folder, every source-family given will be reloaded." TextAlignment="Center"/>
                     <TextBlock Foreground="Gray"  Text="Example: Panel families to update their sub panel-style families" TextAlignment="Center"/>
                     <TextBlock Text="Target: "/>
                     <TextBlock Text="{Binding TargetFolderPath}"/>
-                    <Button Content="Choose Target Folder" Margin="0 10" Padding="10" Click="Target_Button" Width="160"/>
-                    <Button Content="Fetch Target Families" Margin="0 10" Padding="10" Click="FetchTargetFamilies_Button" Width="160"/>
+                    <Button Content="Choose Target Folder" Margin="0 10" Padding="10" Click="Target_Button" Width="200"/>
+                    <Button Content="Fetch Target Families/Projects" Margin="0 10" Padding="10" Click="FetchTargetFamilies_Button" Width="200"/>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <RadioButton Content="RFA" FontSize="16" 
+                            Name="RfaRadioButton"
+                            VerticalContentAlignment="Center" 
+                            Padding="5,0,5,0" 
+                            Margin="0,2,0,2"
+                            GroupName="FileTypeGroup"
+                        />
+                        <RadioButton Content="RVT" FontSize="16" 
+                            Name="RvtRadioButton"
+                            VerticalContentAlignment="Center" 
+                            Padding="5,0,5,0" 
+                            Margin="0,2,0,2"
+                            GroupName="FileTypeGroup"
+                            IsChecked="True" 
+                         />
+                    </StackPanel>
 
                     <ListBox ItemsSource="{Binding TargetFamilyNamesWithExtension}" Height="100" Margin="0 10"/>
                 </StackPanel>
             </Border>
 
-            <Button Content="Reload Families" Margin="0 10" Padding="10" Click="Reload_Button" Width="160"/>
-            <StackPanel HorizontalAlignment="Stretch">
-                <StackPanel HorizontalAlignment="Stretch" Margin="20 0">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Total Successful: "/>
-                        <TextBlock Text="{Binding SuccessCount}"/>
+            <Border BorderBrush="LightGray" BorderThickness="1" CornerRadius="8" Margin="10">
+                <StackPanel>
+                    <Button Content="Reload Families" Margin="0 10" Padding="10" Click="Reload_Button" Width="200"/>
+                    <StackPanel HorizontalAlignment="Stretch">
+                        <StackPanel HorizontalAlignment="Stretch" Margin="20 0">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Total Successful: "/>
+                                <TextBlock Text="{Binding SuccessCount}"/>
+                            </StackPanel>
+                            <ListBox ItemsSource="{Binding SuccessResults}" Height="100" Margin="0 10"/>
+                        </StackPanel>
+                        <StackPanel HorizontalAlignment="Stretch" Margin="20 0">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Total Failed: "/>
+                                <TextBlock Text="{Binding FailedCount}"/>
+                            </StackPanel>
+                            <ListBox ItemsSource="{Binding FailedResults}" Height="100" Margin="0 10"/>
+                        </StackPanel>
                     </StackPanel>
-                    <ListBox ItemsSource="{Binding SuccessResults}" Height="100" Margin="0 10"/>
                 </StackPanel>
-                <StackPanel HorizontalAlignment="Stretch" Margin="20 0">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Total Failed: "/>
-                        <TextBlock Text="{Binding FailedCount}"/>
-                    </StackPanel>
-                    <ListBox ItemsSource="{Binding FailedResults}" Height="100" Margin="0 10"/>
-                </StackPanel>
-            </StackPanel>
+            </Border>
+
+
         </StackPanel>
     </Grid>
-</UserControl>
+</Window>

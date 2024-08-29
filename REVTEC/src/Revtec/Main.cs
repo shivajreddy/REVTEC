@@ -6,13 +6,13 @@ namespace Revtec
 {
 
     // RevTec main entry point
-    public class Main :IExternalApplication
+    public class Main : IExternalApplication
     {
         public Result OnStartup(UIControlledApplication application)
         {
 
             // Subscribe to the Idling event
-            application.Idling += OnIdling;
+            //application.Idling += OnIdling;
 
             // Subscribe to the View event
             //application.ViewActivated += OnViewChanged;
@@ -30,7 +30,6 @@ namespace Revtec
             var uiApplication = sender as UIApplication;
 
             // Check if there is an active document
-
             uiApplication?.ActiveUIDocument?.Selection.GetElementIds();
         }
 
@@ -39,7 +38,7 @@ namespace Revtec
         {
 
             // Unsubscribe from the Idling event
-            application.Idling -= OnIdling;
+            //application.Idling -= OnIdling;
 
 
             return Result.Succeeded;

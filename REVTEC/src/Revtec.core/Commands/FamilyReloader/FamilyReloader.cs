@@ -17,31 +17,13 @@ namespace Revtec.core.Commands.FamilyStuff
             var uiDoc = commandData.Application.ActiveUIDocument;
             var doc = uiDoc.Document;
 
-            // Display the form
-
-            /*
-            using (System.Windows.Forms.Form winForm = new FamilyReloaderForm(doc))
-            {
-                winForm.ShowDialog();
-                //winForm.Show();
-                winForm.Activate();
-            }
-            */
-
-            // Create a WPF Window to host the UserContorl
-            var window = new Window
-            {
-                Title = "Family Reloader",
-                Width = 600,
-                Height = 1000,
-                Content = new FamilyReloaderView(doc),
-                WindowStartupLocation = WindowStartupLocation.CenterScreen
-            };
+            // Create an instance of the FamilyReloaderView window and pass the document
+            var window = new FamilyReloaderView(doc);
 
             // Show the window as a dialog
-            window.ShowDialog();
+            var result = window.ShowDialog();
 
-            return Result.Succeeded;
+            return result == true ? Result.Succeeded : Result.Cancelled;
         }
 
 

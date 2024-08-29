@@ -12,7 +12,7 @@ using System.Collections.ObjectModel;
 
 namespace Revtec.core.Commands.FamilyStuff
 {
-    public partial class FamilyReloaderView : System.Windows.Controls.UserControl, INotifyPropertyChanged
+    public partial class FamilyReloaderView : Window, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string propertyName)
@@ -96,15 +96,15 @@ namespace Revtec.core.Commands.FamilyStuff
 
 
 
-
         private void Source_Button(object sender, RoutedEventArgs e)
         {
-            using (var dialog = new FolderBrowserDialog())
+            using (var dialog = new System.Windows.Forms.FolderBrowserDialog())
             {
                 dialog.Description = "Select the source folder";
                 dialog.ShowNewFolderButton = false;
 
-                if (dialog.ShowDialog() == DialogResult.OK)
+                var result = dialog.ShowDialog();
+                if (result == System.Windows.Forms.DialogResult.OK && !string.IsNullOrWhiteSpace(dialog.SelectedPath))
                 {
                     SourceFolderPath = dialog.SelectedPath;
                 }
@@ -113,12 +113,13 @@ namespace Revtec.core.Commands.FamilyStuff
 
         private void Target_Button(object sender, RoutedEventArgs e)
         {
-            using (var dialog = new FolderBrowserDialog())
+            using (var dialog = new System.Windows.Forms.FolderBrowserDialog())
             {
                 dialog.Description = "Select the target folder";
                 dialog.ShowNewFolderButton = false;
 
-                if (dialog.ShowDialog() == DialogResult.OK)
+                var result = dialog.ShowDialog();
+                if (result == System.Windows.Forms.DialogResult.OK && !string.IsNullOrWhiteSpace(dialog.SelectedPath))
                 {
                     TargetFolderPath = dialog.SelectedPath;
                 }
@@ -129,7 +130,7 @@ namespace Revtec.core.Commands.FamilyStuff
         {
             if (!string.IsNullOrEmpty(SourceFolderPath))
             {
-                SourceFamilyNames = GetRfaFiles(SourceFolderPath)
+                SourceFamilyNames = GetRFAFiles(SourceFolderPath)
                     .Select(f => Path.GetFileNameWithoutExtension(f))
                     .ToList();
             }
@@ -145,7 +146,16 @@ namespace Revtec.core.Commands.FamilyStuff
         {
             if (!string.IsNullOrEmpty(TargetFolderPath))
             {
-                TargetFamilyNamesWithExtension = GetRfaFiles(TargetFolderPath);
+                if (RfaRadioButton.IsChecked == true)
+                {
+                    // Fetch RFA files
+                    TargetFamilyNamesWithExtension = GetRFAFiles(TargetFolderPath);
+                }
+                else if (RvtRadioButton.IsChecked == true)
+                {
+                    // Fetch RVT files
+                    TargetFamilyNamesWithExtension = GetRVTFiles(TargetFolderPath);
+                }
             }
             else
             {
@@ -160,36 +170,26 @@ namespace Revtec.core.Commands.FamilyStuff
             //SourceFolderPath = "C:\\Users\\sreddy\\Desktop\\Test Script\\Panel Styles";
             //TargetFolderPath = "C:\\Users\\sreddy\\Desktop\\Test Script\\Panel Families";
 
-            //GetRfaFiles(SourceFolderPath);
-            GetRfaFiles(TargetFolderPath);
-
             // Implement the reloading logic
             if (!string.IsNullOrEmpty(SourceFolderPath) && !string.IsNullOrEmpty(TargetFolderPath))
             {
-                // Step 1: Get family names from both folders
-                List<string> sourceFamilyNames = GetRfaFiles(SourceFolderPath).Select(f => Path.GetFileNameWithoutExtension(f)).ToList();
-                List<string> targetFamilyNamesWithExtension = GetRfaFiles(TargetFolderPath);
-                //List<string> targetFamilyNames = GetRfaFiles(TargetFolderPath);
+                ////sourceFamilyNames;
+                //TargetFamilyNamesWithExtension;
 
-                // Step 2: Filter loaded families in the document
-                //List<string> loadedFamiliesToReupload = FilterLoadedFamilies(_doc, sourceFamilyNames);
-                Console.WriteLine("hi");
 
-                if (sourceFamilyNames.Count == 0)
+                if (SourceFamilyNames.Count == 0)
                 {
                     System.Windows.MessageBox.Show("There are no families in Source folder.");
                     return;
                 }
-                if (targetFamilyNamesWithExtension.Count == 0)
+                if (TargetFamilyNamesWithExtension.Count == 0)
                 {
                     System.Windows.MessageBox.Show("There are no families in Target folder.");
                     return;
                 }
 
                 // Step 3: Reload the matching families
-                Console.WriteLine("hi");
-                Tuple<List<string>, List<string>> allResults = ReloadFamilies(TargetFolderPath, targetFamilyNamesWithExtension, SourceFolderPath, sourceFamilyNames);
-
+                Tuple<List<string>, List<string>> allResults = ReloadFamilies();
 
                 // Update SuccessResults
                 SuccessResults.Clear();
@@ -213,7 +213,7 @@ namespace Revtec.core.Commands.FamilyStuff
         }
 
 
-        private List<string> GetRfaFiles(string folder)
+        private List<string> GetRFAFiles(string folder)
         {
             var rfaFiles = new List<string>();
 
@@ -231,15 +231,34 @@ namespace Revtec.core.Commands.FamilyStuff
             }
             return rfaFiles;
         }
+        private List<string> GetRVTFiles(string folder)
+        {
+            var rvtFiles = new List<string>();
 
-        private Tuple<List<string>, List<string>> ReloadFamilies(string targetFolder, List<string> targetFamilyNamesWithExtension, string sourceFolder, List<string> sourceFamilyNames)
+            // Regex pattern to ignore backup files
+            //var backupFilePattern = new Regex(@"^.+\.\d{4}\.rfa$");
+            var backupFilePattern = new Regex(@"^.+\.\d{4}\..+$");
+
+            // Ignore Backup Files
+            foreach (var file in Directory.GetFiles(folder, "*.rvt"))
+            {
+                if (!backupFilePattern.IsMatch(file))
+                {
+                    rvtFiles.Add(Path.GetFileName(file));
+                }
+            }
+            return rvtFiles;
+        }
+
+
+        private Tuple<List<string>, List<string>> ReloadFamilies()
         {
             var successResults = new List<string>();
             var failedResults = new List<string>();
 
-            foreach (var targetFamily in targetFamilyNamesWithExtension)
+            foreach (var targetFamily in TargetFamilyNamesWithExtension)
             {
-                string targetFamilyPath = Path.Combine(targetFolder, targetFamily);
+                string targetFamilyPath = Path.Combine(TargetFolderPath, targetFamily);
 
                 // Attempt to open the target family as a temporary document
                 Document targetFamilyDoc = null;
@@ -255,7 +274,7 @@ namespace Revtec.core.Commands.FamilyStuff
                     continue;
                 }
 
-                List<string> loadedFamiliesToReupload = FilterLoadedFamiliesForGivenDocument(targetFamilyDoc, sourceFamilyNames, sourceFolder);
+                List<string> loadedFamiliesToReupload = FilterLoadedFamiliesForGivenDocument(targetFamilyDoc);
 
                 /* // Testing
                 foreach (var loadedFamily in loadedFamiliesToReupload)
@@ -271,7 +290,7 @@ namespace Revtec.core.Commands.FamilyStuff
 
                     foreach (var loadedFamily in loadedFamiliesToReupload)
                     {
-                        string sourceFamilyPath = Path.Combine(sourceFolder, $"{loadedFamily}.rfa");
+                        string sourceFamilyPath = Path.Combine(SourceFolderPath, $"{loadedFamily}.rfa");
 
                         FamilyLoadOptionsHandler familyOptionsHandler = new FamilyLoadOptionsHandler();
                         Family loadedFamilyInstance;
@@ -308,7 +327,7 @@ namespace Revtec.core.Commands.FamilyStuff
 
             return new Tuple<List<string>, List<string>>(successResults, failedResults);
         }
-        private List<string> FilterLoadedFamiliesForGivenDocument(Document doc, List<string> sourceFamilyNames, string sourceFolder)
+        private List<string> FilterLoadedFamiliesForGivenDocument(Document doc)
         {
             var filteredFamilies = new HashSet<string>();
 
@@ -320,7 +339,7 @@ namespace Revtec.core.Commands.FamilyStuff
             {
                 Family family = familySymbol.Family;
                 // Filter for family symbols that we are looking for i.e., source-families & Dont add duplicates
-                if (sourceFamilyNames.Contains(family.Name) && !filteredFamilies.Contains(family.Name))
+                if (SourceFamilyNames.Contains(family.Name) && !filteredFamilies.Contains(family.Name))
                 {
                     filteredFamilies.Add(family.Name);
                 }
@@ -335,9 +354,15 @@ namespace Revtec.core.Commands.FamilyStuff
         public FamilyReloaderView(Document doc)
         {
             InitializeComponent();
-            DataContext = this; // Set DataContext to the UserControl instance
+
+            // Set the DataContext to the current instance of FamilyReloaderView
+            DataContext = this;
+
+            // Initialize the ObservableCollections
             SuccessResults = new ObservableCollection<string>();
             FailedResults = new ObservableCollection<string>();
+
+            // Assign the passed document to the private field
             _doc = doc;
         }
 

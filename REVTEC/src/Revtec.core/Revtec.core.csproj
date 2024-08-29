@@ -76,12 +76,6 @@
     </Compile>
     <Compile Include="Commands\EditStuff\EditButton.cs" />
     <Compile Include="Commands\FamilyReloader\FamilyReloader.cs" />
-    <Compile Include="Commands\FamilyReloader\FamilyReloaderForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Commands\FamilyReloader\FamilyReloaderForm.Designer.cs">
-      <DependentUpon>FamilyReloaderForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Commands\FamilyReloader\FamilyReloaderView.xaml.cs">
       <DependentUpon>FamilyReloaderView.xaml</DependentUpon>
     </Compile>
@@ -110,9 +104,6 @@
   <ItemGroup>
     <EmbeddedResource Include="Commands\CreateStuff\NewBundleSheet.resx">
       <DependentUpon>NewBundleSheet.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Commands\FamilyReloader\FamilyReloaderForm.resx">
-      <DependentUpon>FamilyReloaderForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\FamilyStuff\FamilyManagerForm.resx">
       <DependentUpon>FamilyManagerForm.cs</DependentUpon>
