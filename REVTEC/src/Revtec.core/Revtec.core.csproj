@@ -69,11 +69,7 @@
     <Compile Include="Commands\CreateStuff\NewBundleSheet.Designer.cs">
       <DependentUpon>NewBundleSheet.cs</DependentUpon>
     </Compile>
-    <Compile Include="Commands\EagleKitchen\Main.cs" />
     <Compile Include="Commands\Dev\KitchenDesign\FixMirroredHandleSets.cs" />
-    <Compile Include="Commands\EagleKitchen\EagleKitchenMainWindow.xaml.cs">
-      <DependentUpon>EagleKitchenMainWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Commands\EditStuff\EditButton.cs" />
     <Compile Include="Commands\FamilyReloader\FamilyReloader.cs" />
     <Compile Include="Commands\FamilyReloader\FamilyReloaderView.xaml.cs">
@@ -88,6 +84,11 @@
     </Compile>
     <Compile Include="Commands\Dev\Revit2024\Logger.cs" />
     <Compile Include="Commands\Dev\Revit2024\Revit2024.cs" />
+    <Compile Include="Commands\Parameters\LinkSheetParamsToGlobalParamsCommand.cs" />
+    <Compile Include="Commands\Parameters\LinkSheetParamsToGlobalParamsView.xaml.cs">
+      <DependentUpon>LinkSheetParamsToGlobalParamsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Commands\Selection\SelectAllSheets.cs" />
     <Compile Include="Commands\Selection\SelectionFilterByCategory.cs" />
     <Compile Include="Commands\Dev\CustomAvailablity.cs" />
     <Compile Include="Commands\Dev\Form1.cs">
@@ -117,18 +118,15 @@
     <None Include="Properties\DataSources\Revtec.core.Commands.FamilyStuff.FamilyManagerForm.datasource" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Commands\EagleKitchen\EagleKitchenMainWindow.xaml">
+    <Page Include="Commands\FamilyReloader\FamilyReloaderView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Commands\FamilyReloader\FamilyReloaderView.xaml">
+    <Page Include="Commands\Parameters\LinkSheetParamsToGlobalParamsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup />
-  <ItemGroup>
-    <Content Include="Commands\EagleKitchen\Images\Image1.png" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
