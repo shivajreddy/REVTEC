@@ -17,7 +17,7 @@ namespace Revtec
 		public void Initialize(UIControlledApplication app)
 		{
 			// Create Ribbon Tab
-			const string tabName = "REVTEC-1.2.0";
+			const string tabName = "REVTEC-1.3.0";
 			app.CreateRibbonTab(tabName);
 
 			////////////////////////////////////////    "Create Stuff" Panel    //////////////////////////////////////// 
@@ -176,6 +176,24 @@ namespace Revtec
 			RevitPushButton.Create(selectionMainButtonDataModel);
 
 
+			//////////////////////////////////////////    "Sheets" Panel    //////////////////////////////////////// 
+			const string sheetsPanelName = "Sheets";
+			var sheetsPanel = app.CreateRibbonPanel(tabName, sheetsPanelName);
+
+			// Generate button data
+			var devReNumberDetailsButton = new RevitPushButtonDataModel()
+			{
+				Label = "Re-Number Details",
+				Panel = sheetsPanel,
+				Tooltip = "Renumber all the details on the sheeet",
+				IconImageName = "renumber.ico",
+				IconLargeImageName = "renumber.ico",
+				TooltipImageName = "renumber.ico",
+				CommandNamespacePath = Revtec.core.Commands.Sheets.ReNumber.GetPath()
+			};
+			RevitPushButton.Create(devReNumberDetailsButton);
+
+
 			//////////////////////////////////////////    "Dev" Panel    //////////////////////////////////////// 
 			const string devPanelName = "DEV";
 			var devPanel = app.CreateRibbonPanel(tabName, devPanelName);
@@ -215,6 +233,8 @@ namespace Revtec
 			RevitPushButton.Create(updateMirrorsModel);
 			//updateMirrors.Visible = false;
 			//updateMirrors.Enabled = false;
+
+
 
 			////////////////////////// Raw button -> Family only button///////////////////
 			/*

@@ -70,6 +70,7 @@
       <DependentUpon>NewBundleSheet.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\Dev\KitchenDesign\FixMirroredHandleSets.cs" />
+    <Compile Include="Commands\Sheets\ReNumber.cs" />
     <Compile Include="Commands\EditStuff\EditButton.cs" />
     <Compile Include="Commands\FamilyReloader\FamilyReloader.cs" />
     <Compile Include="Commands\FamilyReloader\FamilyReloaderView.xaml.cs">

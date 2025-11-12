@@ -69,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\how_to.txt" />
+    <EmbeddedResource Include="Images\Icons\renumber.ico" />
     <EmbeddedResource Include="Images\Icons\link_params.ico" />
     <EmbeddedResource Include="Images\Icons\sheet.ico" />
     <EmbeddedResource Include="Images\Icons\kitchen32png.png" />
