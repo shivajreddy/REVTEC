@@ -62,6 +62,7 @@
     <Compile Include="Commands\Annotations\Helpers\Message.cs" />
     <Compile Include="Commands\Annotations\TagWallLayer.cs" />
     <Compile Include="Commands\Annotations\ToggleHalfTone.cs" />
+    <Compile Include="Commands\AutoMagic\ExportDWG.cs" />
     <Compile Include="Commands\CreateStuff\CreateBundleSheets.cs" />
     <Compile Include="Commands\CreateStuff\NewBundleSheet.cs">
       <SubType>Form</SubType>

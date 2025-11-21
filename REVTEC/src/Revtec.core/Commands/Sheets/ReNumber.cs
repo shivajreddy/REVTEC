@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Windows.Controls.Primitives;
 
 namespace Revtec.core.Commands.Sheets
 {
@@ -112,6 +113,7 @@ namespace Revtec.core.Commands.Sheets
 					}
 
 					trans.Commit();
+					// TODO: Create a WPF notification window, show that on *top right* as a nice notification
 					TaskDialog.Show("Renumber Details",
 						$"Successfully renumbered {sortedViewports.Count} details on sheet {sheet.SheetNumber}.");
 					return Result.Succeeded;

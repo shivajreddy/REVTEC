@@ -193,6 +193,36 @@ namespace Revtec
 			};
 			RevitPushButton.Create(devReNumberDetailsButton);
 
+			//////////////////////////////////////////    "AutoMagic" Panel    //////////////////////////////////////// 
+			const string automagicPanelName = "Ship It";
+			var automagicPanel = app.CreateRibbonPanel(tabName, automagicPanelName);
+
+			// ExportDWG: Generate button data
+			var automagic_shipdwg_btn_model = new RevitPushButtonDataModel()
+			{
+				Label = "Export DWG",
+				Panel = automagicPanel,
+				Tooltip = "Export DWG Files into the correct folder",
+				IconImageName = "exportdwg.ico",
+				IconLargeImageName = "exportdwg.ico",
+				TooltipImageName = "exportdwg.ico",
+				CommandNamespacePath = Revtec.core.Commands.AutoMagic.ExportDWG.GetPath()
+			};
+			RevitPushButton.Create(automagic_shipdwg_btn_model);
+
+			// ExportDWG: Create Email
+			var automagic_create_email = new RevitPushButtonDataModel()
+			{
+				Label = "Create EMAIL",
+				Panel = automagicPanel,
+				Tooltip = "Create email",
+				IconImageName = "exportdwg.ico",
+				IconLargeImageName = "exportdwg.ico",
+				TooltipImageName = "exportdwg.ico",
+				CommandNamespacePath = Revtec.core.Commands.AutoMagic.ExportDWG.GetPath()
+			};
+			RevitPushButton.Create(automagic_create_email);
+
 
 			//////////////////////////////////////////    "Dev" Panel    //////////////////////////////////////// 
 			const string devPanelName = "DEV";
